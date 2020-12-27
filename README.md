@@ -6,3 +6,4 @@ Animations:
     -Typing scrambled thing
     -Button animations
     -Mouseover animations
+Custom Font
