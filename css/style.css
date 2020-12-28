@@ -1,0 +1,60 @@
+body {
+    background-color: #2b2d42;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: url("../fonts/Noto_Sans/NotoSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Oxygen Mono";
+    src: url("../fonts/Oxygen_Mono/OxygenMono-Regular.ttf") format("truetype");
+}
+
+#intro {
+    font-size: 72px;
+    color: #ef233c;
+    padding: 10px;
+    font-weight: lighter;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-family: "Oxygen Mono";
+    text-shadow: #000000 2px 2px 2px;
+}
+
+div {
+    width: 50px;
+    height: 50px;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+#color1 {
+    background-color: #2b2d42;
+    margin-left: 10px;
+}
+
+#color2 {
+    background-color: #8d99ae;
+}
+
+#color3 {
+    background-color: #edf2f4;
+}
+
+#color4 {
+    background-color: #ef233c;
+}
+
+#color5 {
+    background-color: #d90429;
+}
