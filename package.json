@@ -1,0 +1,22 @@
+{
+  "name": "stjohnfinn.github.io",
+  "version": "1.0.0",
+  "description": "This is the readme for my personal website that serves as my developer portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stjohnfinn/stjohnfinn.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stjohnfinn/stjohnfinn.github.io/issues"
+  },
+  "homepage": "https://github.com/stjohnfinn/stjohnfinn.github.io#readme",
+  "dependencies": {
+    "animejs": "^3.2.1"
+  }
+}

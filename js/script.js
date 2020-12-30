@@ -1,14 +1,13 @@
-//import TypeIt from "typeit";
+const contBtn = document.getElementById("welcomeButton");
 
-let intro = new TypeIt('#intro', {
-    strings: "Hi, I'm Finn.",
-    speed: 100,
-    lifelike: true,
-    cursor: true,
-    cursorSpeed: 1000,
-    afterComplete: function (step, instance) {
-        instance.destroy();
-    }
-});
+contBtn.addEventListener('click', introSlideUp);
 
-intro.go();
+function introSlideUp() {
+    console.log("introSlideUp");
+
+    anime({
+        targets: '#intro',
+        translateY: '100%',
+        easing: 'easeInOutQuad'
+    });
+}
