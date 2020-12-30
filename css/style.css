@@ -24,7 +24,7 @@ body {
 @font-face {
     font-family: "Noto Serif Bold";
     src: url("../fonts/Noto_Serif/NotoSerif-Bold.ttf");
-}   
+}
 
 #intro {
     font-size: 72px;
@@ -42,9 +42,8 @@ body {
     line-height: 50vh;
     background-image: url("../assets/ATtrees.jpg");
     background-size: cover;
-    overflow: hidden;
-    transition: width 2s height 4s;
     display: block;
+    z-index: 999;
 }
 
 #welcomeButton {
@@ -65,33 +64,23 @@ body {
     left: 50vw;
     transform: translate(-50%, -50%);
     text-shadow: 0px 0px 0px;
-    font-weight: 1000pt;
+    font-weight: 1000;
 }
 
-#god {
-    line-height: 50vh;
+#title {
+    font-family: "Inconsolata";
+    font-size: 40px;
     text-align: center;
-    font-size: 100px;
-    font-family: "Noto Sans";
+    border: white 2px solid;
+    line-height: 50vh;
 }
 
-#color1 {
-    background-color: #2b2d42;
-    margin-left: 10px;
+#p5link {
+    font-family: "Oxygen Mono";
+    font-size: 24px;
+    color: black;
 }
 
-#color2 {
-    background-color: #8d99ae;
-}
-
-#color3 {
-    background-color: #edf2f4;
-}
-
-#color4 {
-    background-color: #ef233c;
-}
-
-#color5 {
-    background-color: #d90429;
+#p5link:visited {
+    color: black;
 }

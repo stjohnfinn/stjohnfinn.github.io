@@ -7,7 +7,7 @@ function introSlideUp() {
 
     anime({
         targets: '#intro',
-        translateY: '100%',
+        translateY: '-100%',
         easing: 'easeInOutQuad'
     });
 }
