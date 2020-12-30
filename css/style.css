@@ -60,27 +60,90 @@ body {
     cursor: pointer;
     border-radius: 8px;
     position: fixed;
-    top: 90vh;
+    top: 80vh;
     left: 50vw;
     transform: translate(-50%, -50%);
     text-shadow: 0px 0px 0px;
     font-weight: 1000;
 }
 
-#title {
-    font-family: "Inconsolata";
-    font-size: 40px;
-    text-align: center;
-    border: white 2px solid;
-    line-height: 50vh;
+#mainPageDiv {
+    border: #2b2d42 2px solid;
+    position: relative;
 }
 
-#p5link {
+#projects {
+    font-family: "Inconsolata";
+    font-size: 70px;
+    text-align: center;
+    line-height: 10vh;
+    color: #d90429;
+    font-weight: 900;
+    grid-template-columns: 3;
+}
+
+.projectLink {
     font-family: "Oxygen Mono";
     font-size: 24px;
-    color: black;
+    color: #edf2f4;
+    position: relative;
+    margin-bottom: 20px;
+    display: block;
+    width: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    border: 2px solid #2b2d42;
+    transition: all 0.35s;
+    text-decoration: none;
 }
 
-#p5link:visited {
-    color: black;
+.projectLink:visited {
+    color: #edf2f4;
+    border: 2px solid #2b2d42;
+    text-decoration: none;
+}
+
+.otherLink {
+    font-family: "Oxygen Mono";
+    font-size: 18px;
+    color: #edf2f4;
+    width: 100px;
+    text-align: center;
+    position: relative;
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 10px;
+    padding: 5px;
+    border: 2px solid #2b2d42;
+    text-decoration: none;
+}
+
+.otherLink:visited {
+    color: #edf2f4;
+    border: 2px solid #2b2d42;
+    text-decoration: none;
+}
+
+.otherLink:hover {
+    color: #edf2f4;
+}
+
+a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d90429;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+a:hover::before{
+    visibility: visible;
+    transform: scaleX(0.5);
 }
