@@ -1,0 +1,13 @@
+- Genetic Algorithm
+- Voyager Tracker
+- Live Stock Prices
+- Neural Network
+- Host the Site
+
+Libraries:
+- p5.js
+- Granim.js
+- aos.js
+- chart.js
+- choreographer.js
+- cleave.js
