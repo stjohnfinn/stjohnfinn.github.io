@@ -11,3 +11,11 @@ function introSlideUp() {
         easing: 'easeInOutQuad'
     });
 }
+
+$(document).ready(function(){
+    $("#contactDiv").hide();
+
+    $("#contactButton").click(function() {
+        $("#contactDiv").slideToggle("fast");
+    })
+});

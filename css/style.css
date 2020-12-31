@@ -130,6 +130,10 @@ body {
     color: #edf2f4;
 }
 
+a {
+    cursor: pointer;
+}
+
 a::before {
     content: '';
     position: absolute;
@@ -146,4 +150,18 @@ a::before {
 a:hover::before{
     visibility: visible;
     transform: scaleX(0.5);
+}
+
+.contactInfo{
+    color: #edf2f4;
+    width: 200px;
+    display: block;
+    position: relative;
+    text-align: center;
+    margin: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Oxygen Mono";
+    font-size: 14px;
+    text-decoration: none;
 }
