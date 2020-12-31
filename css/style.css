@@ -26,6 +26,18 @@ body {
     src: url("../fonts/Noto_Serif/NotoSerif-Bold.ttf");
 }
 
+@keyframes reveal {
+    100% {
+        background-size: 300% 300%;
+    }
+}
+
+@keyframes glow {
+    40% {
+        text-shadow: 0 0 6px #d90429;
+    }
+}
+
 #intro {
     font-size: 72px;
     color: black;
@@ -80,6 +92,10 @@ body {
     color: #d90429;
     font-weight: 900;
     grid-template-columns: 3;
+    background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #d90429, transparent, transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
 }
 
 .projectLink {
@@ -164,4 +180,8 @@ a:hover::before{
     font-family: "Oxygen Mono";
     font-size: 14px;
     text-decoration: none;
+}
+
+#contactDiv {
+    height: 80px;
 }

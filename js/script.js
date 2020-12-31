@@ -14,8 +14,13 @@ function introSlideUp() {
 
 $(document).ready(function(){
     $("#contactDiv").hide();
+    $("#aboutDiv").hide();
 
     $("#contactButton").click(function() {
-        $("#contactDiv").slideToggle("fast");
+        $("#contactDiv").slideToggle("slow");
+    })
+
+    $("#aboutButton").click(function() {
+        $("#aboutDiv").slideToggle("slow");
     })
 });
