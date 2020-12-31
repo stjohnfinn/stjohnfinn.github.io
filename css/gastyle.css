@@ -1,0 +1,73 @@
+body {
+    background-color: #2b2d42;
+    position: relative;
+}
+
+#title {
+    font-family: "Inconsolata";
+    font-size: 70px;
+    text-align: center;
+    line-height: 10vh;
+    color: #d90429;
+    font-weight: 900;
+    margin-top: 10px;
+}
+
+#startBtn {
+    font-family: "Inconsolata";
+    font-size: 40px;
+    text-align: center;
+    color: #d90429;
+    font-weight: 900;
+    left: 7.5vw;
+    transform: translateX(-50%);
+    margin-top: 0;
+    padding: 5px;
+    top: 20vh;
+    position: absolute;
+    animation-name: borderHide;
+    animation-duration: 1s;
+    cursor: pointer;
+    height: 45px;
+    border: 2px #2b2d42 solid;
+    border-radius: 2px;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: 0.35s;
+}
+
+#startBtn:hover {
+    border: 2px #d90429 solid;
+    border-radius: 2px;
+}
+
+#p5canvas {
+    position: absolute;
+    border: 2px white solid;
+    border-radius: 4px;
+    width: 70vw;
+    height: 55vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#info {
+    font-size: 16px;
+    font-family: "Oxygen Mono";
+    color: #d90429;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 90vh;
+    text-align: center;
+}
+
+@font-face {
+    font-family: "Inconsolata";
+    src: url("../fonts/Inconsolata/Inconsolata-VariableFont_wdth\,wght.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Oxygen Mono";
+    src: url("../fonts/Oxygen_Mono/OxygenMono-Regular.ttf") format("truetype");
+}
