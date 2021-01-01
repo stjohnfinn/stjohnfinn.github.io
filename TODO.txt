@@ -11,6 +11,7 @@ Libraries:
 - chart.js
 - choreographer.js
 - cleave.js
+- ml5.js
 
 Colors:
 #2b2d42

@@ -4,6 +4,21 @@ let rocketsMax = 20;
 let rocketsMin = 3;
 let mutMax = 50;
 let mutMin = 2;
+let population = 1;
+
+class Rocket {
+
+    moves = new Array(20);
+    direction = 0;
+
+    constructor() {
+        this.init();
+    }
+
+    init() {
+
+    }
+}
 
 $(document).ready(function() {
     console.log("Ready!");
@@ -18,18 +33,20 @@ $(document).ready(function() {
 function setup() {
     let cnv = createCanvas(divW, divH);
     cnv.parent("p5canvas");
-    frameRate(1);
+    frameRate(30);
+    angleMode(DEGREES);
 }
 
 function draw() {
-    background('#0d0f40');
+    background(200);
+
+    for(let i = 0; i < population; i++) {
+        
+    }
 }
 
-function drawRocket(x, y) {
-    fill(130);
-    rect(x, y - 10, 50, 20);
-    fill('#ffd012');
-    rect(x - 5, y - 8, 5, 16)
+function mousePressed() {
+    
 }
 
 function startSim() {
