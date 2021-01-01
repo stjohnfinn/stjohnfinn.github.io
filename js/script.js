@@ -13,14 +13,38 @@ function introSlideUp() {
 }
 
 $(document).ready(function(){
-    $("#contactDiv").hide();
-    $("#aboutDiv").hide();
-
     $("#contactButton").click(function() {
-        $("#contactDiv").slideToggle("slow");
-    })
+        if($(".contactSlider").hasClass("slideUp")) {
+            $(".contactSlider").removeClass("slideUp").addClass("slideDown");
+        } else {
+            $(".contactSlider").removeClass("slideDown").addClass("slideUp");
+        }
+    });
 
     $("#aboutButton").click(function() {
-        $("#aboutDiv").slideToggle("slow");
-    })
+        if($(".aboutSlider").hasClass("slideUp")) {
+            $(".aboutSlider").removeClass("slideUp").addClass("slideDown");
+        } else {
+            $(".aboutSlider").removeClass("slideDown").addClass("slideUp");
+        }
+    });
+
+    contactSliderUpdate();
+    aboutSliderUpdate();
 });
+
+function contactSliderUpdate() {
+    if($(".contactSlider").hasClass("slideUp")) {
+        $(".contactSlider").removeClass("slideUp").addClass("slideDown");
+    } else {
+        $(".contactSlider").removeClass("slideDown").addClass("slideUp");
+    }
+}
+
+function aboutSliderUpdate() {
+    if($(".aboutSlider").hasClass("slideUp")) {
+        $(".aboutSlider").removeClass("slideUp").addClass("slideDown");
+    } else {
+        $(".aboutSlider").removeClass("slideDown").addClass("slideUp");
+    }
+}
