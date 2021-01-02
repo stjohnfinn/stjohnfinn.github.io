@@ -3,8 +3,8 @@
     <head>
         <title>Genetic Algorithm</title>
         <link rel="stylesheet" href="css/gastyle.css">
-        <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/two.js/0.7.0/two.js"></script>
         <script src="js/gascript.js"></script>
     </head>
 
@@ -15,10 +15,10 @@
         <div>
             <p id=startBtn>Start</p>
             <p class="sliderLabel" id="rSlider">Rockets</p>
-            <input type="number" class="modVal" id="rVal" value=5 max=20 min=3></input>
+            <input type="number" class="modVal" id="rVal" value=8 max=20 min=4></input>
             <p class="sliderLabel" id="mSlider">Mutation</p>
-            <input type="number" class="modVal" id="mVal" value=25 max=50 min=2></input>
+            <input type="number" class="modVal" id="mVal" value=10 max=50 min=2></input>
         </div>
-        <div id="p5canvas"></div>
+        <div id=twoCanvas></div>
     </body>
 </html>
