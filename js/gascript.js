@@ -4,7 +4,8 @@ let rocketsMax = 20;
 let rocketsMin = 4;
 let mutMax = 50;
 let mutMin = 2;
-let rocketCount = 1;
+let mutationChance = 0;
+let rocketCount = 0;
 let population = new Array(rocketCount);
 
 let rocketStartingPos = {
@@ -13,6 +14,10 @@ let rocketStartingPos = {
 } 
 
 let board = new Two({width: divW, height: divH});
+
+//this the class for each individual rocket, it handles drawing the rocket each frame
+//and handles the 2d physics for each rocket
+//stores its genes and will eventually calculate the fitness as well
 
 class Rocket {
 
@@ -25,13 +30,20 @@ class Rocket {
         this.position.x = startX;
         this.position.y = startY;
 
-        this.velocity.x = 0;
-        this.velocity.y = 0;
+        //generates random velocities for the rocket
+
+        this.velocity.x = Math.random() * 10 - 5;
+        this.velocity.y = Math.random() * 10 - 5;
+
+        //generates random colors
+
+        this.randRed = Math.floor(Math.random() * 255);
+        this.randGreen = Math.floor(Math.random() * 255);
+        this.randBlue = Math.floor(Math.random() * 255);
     }
 
     move() {
-        this.velocity.x = $("#rVal").val();
-        this.velocity.y = $("#mVal").val();
+        //just adds the velocity vector to the position vector each frame
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -50,6 +62,10 @@ class Rocket {
     }
 
     calcDir() {
+        //so inverse tangent doesnt really work when dividing by zero and zero
+        //over anything is just 0 so it doesnt matter if the x is negative or positive
+        //if y is 0, so this is some edge case handling below
+
         if (this.velocity.y == 0) {
             if (this.velocity.x > 0) {
                 this.direction = 0;
@@ -68,38 +84,47 @@ class Rocket {
             }
         }
 
+        //very proud of this trig im the math goat
+
         this.direction = Math.atan(this.velocity.y / this.velocity.x);
+
+        if (this.velocity.x < 0) {
+            this.direction = this.direction + Math.PI;
+        }
     }
 
     draw() {
-        let body = board.makeRectangle(this.position.x, this.position.y, 40, 15);
-        let topWing = board.makePath(this.position.x - 20, this.position.y - 17.5, this.position.x - 20, this.position.y - 7.5, this.position.x - 5, this.position.y - 7.5, this.position.x - 20, this.position.y - 17.5, true);
-        let botWing = board.makePath(this.position.x - 20, this.position.y + 17.5, this.position.x - 20, this.position.y + 7.5, this.position.x - 5, this.position.y + 7.5, this.position.x - 20, this.position.y + 17.5, true);
-        let midWing = board.makeRectangle(this.position.x - 12.5, this.position.y, 15, 4);
-        let cabinWindow = board.makeEllipse(this.position.x + 8, this.position.y, 7.5, 4);
-        let top = board.makePath(this.position.x + 20, this.position.y - 7.5, this.position.x + 35, this.position.y, this.position.x + 20, this.position.y + 7.5, this.position.x + 20, this.position.y - 7.5, true);
-        let exhaust1 = board.makePath(this.position.x - 22, this.position.y - 4, this.position.x - 46, this.position.y, this.position.x - 22, this.position.y + 4, this.position.x - 22, this.position.y - 4, true);
-        let exhaust2 = board.makePath(this.position.x - 22, this.position.y - 2, this.position.x - 32, this.position.y, this.position.x - 22, this.position.y + 2, this.position.x - 22, this.position.y - 2, true);
+        // drawing each part of the body of the rocket
 
-        body.fill = "rgba(210, 210, 210, 0.5)";
-        topWing.fill = "rgba(255, 0, 0, 0.5)";
-        botWing.fill = "rgba(255, 0, 0, 0.5)";
-        midWing.fill = "rgba(255, 0, 0, 0.5)";
-        cabinWindow.fill = "rgba(195, 175, 50, 0.5)";
-        top.fill = "rgba(255, 0, 0, 0.5)";
-        exhaust1.fill = "rgba(255, 165, 0, 0.5)";
-        exhaust2.fill = "rgba(255, 255, 0, 0.5)";
+        let body = board.makeRectangle(this.position.x, this.position.y, 50, 12);
+        let topWing = board.makePath(this.position.x - 30, this.position.y - 17.5, this.position.x - 25, this.position.y - 6, this.position.x - 5, this.position.y - 6, this.position.x - 30, this.position.y - 17.5, true);
+        let botWing = board.makePath(this.position.x - 30, this.position.y + 17.5, this.position.x - 25, this.position.y + 6, this.position.x - 5, this.position.y + 6, this.position.x - 30, this.position.y + 17.5, true);
+        
+        // coloring each section of the rocket
 
-        this.rocketShip = board.makeGroup(body, topWing, botWing, midWing, cabinWindow, top, exhaust1, exhaust2);
+        body.fill = "rgba(" + this.randRed.toString() + ", " + this.randGreen.toString() + ", " + this.randBlue.toString() + ", 0.5)";
+        topWing.fill = "rgba(50, 50, 50, 0.5)";
+        botWing.fill = "rgba(50, 50, 50, 0.5)";
+
+        //grouping each part of the body
+
+        this.rocketShip = board.makeGroup(body, topWing, botWing);
+
+        // more styling
 
         this.rocketShip.linewidth = 1;
         this.rocketShip.miter = 6;
         this.rocketShip.join = "round";
-        this.rocketShip.scale = 2;
+        this.rocketShip.scale = 1;
         this.rocketShip.center();
+
+        //checks for out of bounds and calculates what the rotation of the rocket
+        //should be based on x and y vel
 
         this.checkOutOfBounds();
         this.calcDir();
+
+        //finally, draws the rocket in the correct position with the correct velocity
 
         this.rocketShip.rotation = this.direction;
         this.rocketShip.translation = this.position;
@@ -108,25 +133,39 @@ class Rocket {
 
 $(document).ready(function() {
 
+    //binding and document setup
+
     $("#startBtn").click(clickStart);
     $("#rVal").focusout(validateInput);
     $("#mVal").focusout(validateInput);
+    document.addEventListener('keyup', unfocusOnEnter);
 
-    document.addEventListener('keyup', checkInput);
+    //just sets the two.js canvas to be the div i have set up
 
     board.appendTo(document.getElementById("twoCanvas"));
 
-    let rocket = new Rocket(rocketStartingPos.x, rocketStartingPos.y);
+    initPop();
+
+    // for (let i = 0; i < rocketCount; i++) {
+    //     population[i] = new Rocket(Math.floor(Math.random() * 300) + 100, Math.floor(Math.random() * 300) + 100);
+    // }
 
     board.bind('update', function(frameCount) {
         board.clear();
-        rocket.move();
-        rocket.draw();
+
+        for (let i = 0; i < rocketCount; i++) {
+            population[i].move();
+            population[i].draw();
+        }
     });
+
 });
 
+//changes text on start button from pause to start
+//also might handle getting the value 
+
 function clickStart() {
-    $("#startBtn").text("Pause");
+    updateModifiers();
 
     if (!board.playing) {
         board.play();
@@ -138,6 +177,11 @@ function clickStart() {
 }
 
 function validateInput() {
+    //this is a function that helps make it so that when the
+    //input boxes lose focus, their values are changed to something
+    //within the bounds of the min and max, so that users cant just
+    //put like two billion rockets or two billion percent mutation chance
+
     if($("#rVal").val() > rocketsMax) {
         $("#rVal").val(rocketsMax);
     } if($("#rVal").val() < rocketsMin) {
@@ -149,13 +193,30 @@ function validateInput() {
     }
 }
 
-function checkInput(event) {
+//this is the init function for the population array
+//eventually it will also generate random genes and possibly handle crossover and mutation idk
+
+function initPop() {
+
+    updateModifiers();
+
+    for (let i = 0; i < rocketCount; i++) {
+        population[i] = new Rocket(Math.floor(Math.random() * 300) + 100, Math.floor(Math.random() * 300) + 100);
+    }
+
+}
+
+//this function just handles enabling the user to "enter" values into the box with the enter key
+
+function unfocusOnEnter(event) {
     if( $(".modVal").is(":focus") && event.keyCode === 13) {
         $(".modVal").blur();
     }
 }
 
-function degToRad(deg) {
-    return deg * Math.PI / 180;
-}
+//updates the values of each simulation modifier (rockets and mutation chance)
 
+function updateModifiers() {
+    rocketCount = $("#rVal").val();
+    mutationChance = $("#mVal").val();
+}
