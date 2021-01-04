@@ -96,19 +96,19 @@ class Rocket {
     draw() {
         // drawing each part of the body of the rocket
 
-        let body = board.makeRectangle(this.position.x, this.position.y, 50, 12);
-        let topWing = board.makePath(this.position.x - 30, this.position.y - 17.5, this.position.x - 25, this.position.y - 6, this.position.x - 5, this.position.y - 6, this.position.x - 30, this.position.y - 17.5, true);
-        let botWing = board.makePath(this.position.x - 30, this.position.y + 17.5, this.position.x - 25, this.position.y + 6, this.position.x - 5, this.position.y + 6, this.position.x - 30, this.position.y + 17.5, true);
+        this.body = board.makeRectangle(this.position.x, this.position.y, 50, 12);
+        this.topWing = board.makePath(this.position.x - 30, this.position.y - 17.5, this.position.x - 25, this.position.y - 6, this.position.x - 5, this.position.y - 6, this.position.x - 30, this.position.y - 17.5, true);
+        this.botWing = board.makePath(this.position.x - 30, this.position.y + 17.5, this.position.x - 25, this.position.y + 6, this.position.x - 5, this.position.y + 6, this.position.x - 30, this.position.y + 17.5, true);
         
         // coloring each section of the rocket
 
-        body.fill = "rgba(" + this.randRed.toString() + ", " + this.randGreen.toString() + ", " + this.randBlue.toString() + ", 0.5)";
-        topWing.fill = "rgba(50, 50, 50, 0.5)";
-        botWing.fill = "rgba(50, 50, 50, 0.5)";
+        this.body.fill = "rgba(" + this.randRed.toString() + ", " + this.randGreen.toString() + ", " + this.randBlue.toString() + ", 0.5)";
+        this.topWing.fill = "rgba(50, 50, 50, 0.5)";
+        this.botWing.fill = "rgba(50, 50, 50, 0.5)";
 
         //grouping each part of the body
 
-        this.rocketShip = board.makeGroup(body, topWing, botWing);
+        this.rocketShip = board.makeGroup(this.body, this.topWing, this.botWing);
 
         // more styling
 
@@ -129,6 +129,10 @@ class Rocket {
         this.rocketShip.rotation = this.direction;
         this.rocketShip.translation = this.position;
     }
+
+    removeObjects() {
+        board.remove(this.body, this.topWing, this.botWing, this.rocketShip);
+    }
 }
 
 $(document).ready(function() {
@@ -144,13 +148,15 @@ $(document).ready(function() {
 
     board.appendTo(document.getElementById("twoCanvas"));
 
+    setInterval(updateFramerate, 300);
+
     initPop();
 
-    // for (let i = 0; i < rocketCount; i++) {
-    //     population[i] = new Rocket(Math.floor(Math.random() * 300) + 100, Math.floor(Math.random() * 300) + 100);
-    // }
-
     board.bind('update', function(frameCount) {
+        for (let i = 0; i < rocketCount; i++) {
+            population[i].removeObjects();
+        }
+
         board.clear();
 
         for (let i = 0; i < rocketCount; i++) {
@@ -219,4 +225,14 @@ function unfocusOnEnter(event) {
 function updateModifiers() {
     rocketCount = $("#rVal").val();
     mutationChance = $("#mVal").val();
+}
+
+function updateFramerate() {
+    $("#framerate").text( Math.floor( 1000 / board.timeDelta ) );
+
+    if (board.timeDelta < (1000 / 60)) {
+        $("#framerate").css("color", "greenyellow");
+    } else {
+        $("#framerate").css("color", "rgb(255, 0, 0)");
+    }
 }

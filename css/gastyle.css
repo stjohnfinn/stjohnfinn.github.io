@@ -111,6 +111,13 @@ body {
     top: 330px;
 }
 
+#framerate {
+    position: absolute;
+    left: 10px;
+    top: 800px;
+    color: greenyellow;
+}
+
 @font-face {
     font-family: "Inconsolata";
     src: url("../fonts/Inconsolata/Inconsolata-VariableFont_wdth\,wght.ttf") format("truetype");
