@@ -14,3 +14,4 @@ permalink: /index.html
 
 > change up the way the chromosome iteration works because that function will be running forever and the timing might be off since its not connected
 > to when the actual frames are updated because its a setInterval, so this might make it inconsistent
+> possibly just start it when the start button is pressed and then unbind it when the generation finishes with its moves [unbind interval here](https://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript)
