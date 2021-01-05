@@ -1,19 +1,27 @@
-let divH = 600;
-let divW = 1150;
-let rocketsMax = 20;
-let rocketsMin = 4;
-let mutMax = 50;
-let mutMin = 2;
+const DIV_H = 600;
+const DIV_W = 1150;
+const ROCKETS_MAX = 20;
+const ROCKETS_MIN = 4;
+const MUT_MAX = 50;
+const MUT_MIN = 2;
+const MS_BETWEEN_CHROM = 2000;
+const Y_VELOCITY = 1;
+const X_VELOCITY = 0;
+const MS_BETWEEN_FPS_UPDATE = 150;
+
 let mutationChance = 0;
 let rocketCount = 0;
-let population = new Array(rocketCount);
+let population = new Array();
+let moves = 10;
+let chromosomeCounter = 0;
+let shouldDraw = true;
 
-let rocketStartingPos = {
-    x: divW / 2,
-    y: divH / 2
+const rocketStartingPos = {
+    x: 50,
+    y: DIV_H / 2
 } 
 
-let board = new Two({width: divW, height: divH});
+let board = new Two({width: DIV_W, height: DIV_H});
 
 //this the class for each individual rocket, it handles drawing the rocket each frame
 //and handles the 2d physics for each rocket
@@ -24,7 +32,12 @@ class Rocket {
     moves = new Array(20);
     direction = 0;
     position = new Two.Vector();
-    velocity = new Two.Vector();
+    velocity = {
+        x: 0,
+        y: 0
+    }
+
+    genes = new Array(moves);
 
     constructor(startX, startY) {
         this.position.x = startX;
@@ -35,6 +48,9 @@ class Rocket {
         this.velocity.x = Math.random() * 10 - 5;
         this.velocity.y = Math.random() * 10 - 5;
 
+        // this.velocity.x = 0;
+        // this.velocity.y = 0;
+
         //generates random colors
 
         this.randRed = Math.floor(Math.random() * 255);
@@ -44,6 +60,9 @@ class Rocket {
 
     move() {
         //just adds the velocity vector to the position vector each frame
+
+        // this.velocity.x = 0;
+        // this.velocity.y = 0;
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -148,7 +167,8 @@ $(document).ready(function() {
 
     board.appendTo(document.getElementById("twoCanvas"));
 
-    setInterval(updateFramerate, 300);
+    setInterval(updateFramerate, MS_BETWEEN_FPS_UPDATE);
+    setInterval(updateVelocity, MS_BETWEEN_CHROM);
 
     initPop();
 
@@ -159,9 +179,11 @@ $(document).ready(function() {
 
         board.clear();
 
-        for (let i = 0; i < rocketCount; i++) {
-            population[i].move();
-            population[i].draw();
+        if (shouldDraw) {
+            for (let i = 0; i < rocketCount; i++) {
+                population[i].move();
+                population[i].draw();
+            }
         }
     });
 
@@ -188,14 +210,14 @@ function validateInput() {
     //within the bounds of the min and max, so that users cant just
     //put like two billion rockets or two billion percent mutation chance
 
-    if($("#rVal").val() > rocketsMax) {
-        $("#rVal").val(rocketsMax);
-    } if($("#rVal").val() < rocketsMin) {
-        $("#rVal").val(rocketsMin);
-    } if($("#mVal").val() > mutMax) {
-        $("#mVal").val(mutMax);
-    } if($("#mVal").val() < mutMin) {
-        $("#mVal").val(mutMin);
+    if($("#rVal").val() > ROCKETS_MAX) {
+        $("#rVal").val(ROCKETS_MAX);
+    } if($("#rVal").val() < ROCKETS_MIN) {
+        $("#rVal").val(ROCKETS_MIN);
+    } if($("#mVal").val() > MUT_MAX) {
+        $("#mVal").val(MUT_MAX);
+    } if($("#mVal").val() < MUT_MIN) {
+        $("#mVal").val(MUT_MIN);
     }
 }
 
@@ -207,7 +229,15 @@ function initPop() {
     updateModifiers();
 
     for (let i = 0; i < rocketCount; i++) {
-        population[i] = new Rocket(Math.floor(Math.random() * 300) + 100, Math.floor(Math.random() * 300) + 100);
+        population[i] = new Rocket(rocketStartingPos.x, rocketStartingPos.y);
+    }
+
+    for (let i = 0; i < rocketCount; i++) {
+        for (let j = 0; j < moves; j++) {
+            population[i].genes[j] = new Array(2);
+            population[i].genes[j][X_VELOCITY] = Math.floor( Math.random() * 10) - 5;
+            population[i].genes[j][Y_VELOCITY] = Math.floor( Math.random() * 10) - 5;
+        }
     }
 
 }
@@ -227,6 +257,8 @@ function updateModifiers() {
     mutationChance = $("#mVal").val();
 }
 
+//updates the framerate counter in the bottom left of the window
+
 function updateFramerate() {
     $("#framerate").text( Math.floor( 1000 / board.timeDelta ) );
 
@@ -235,4 +267,23 @@ function updateFramerate() {
     } else {
         $("#framerate").css("color", "rgb(255, 0, 0)");
     }
+}
+
+//runs every few seconds and changes each rocket's velocity to the next chromosome
+//also sets a global variable to false when the rockets should stop being drawn to the canvas, which happens once
+//they run through each of their chromosomes
+
+function updateVelocity() {
+    if (shouldDraw) {
+        if (chromosomeCounter < moves) {
+            for (let i = 0; i < rocketCount; i++) {
+                population[i].velocity.x = population[i].genes[chromosomeCounter][X_VELOCITY];
+                population[i].velocity.x = population[i].genes[chromosomeCounter][Y_VELOCITY];
+            }
+        } else {
+            shouldDraw = false;
+        }
+    }
+
+    chromosomeCounter++;
 }
