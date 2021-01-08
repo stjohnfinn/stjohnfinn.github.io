@@ -8,13 +8,38 @@ const MS_BETWEEN_CHROM = 2000;
 const Y_VELOCITY = 1;
 const X_VELOCITY = 0;
 const MS_BETWEEN_FPS_UPDATE = 150;
+const PLANET = {
+    x: DIV_W - 120,
+    y: DIV_H / 2,
+    r: 60,
+    sides: 14
+}
+const ASTEROID1 = {
+    x: 300,
+    y: 100,
+    r: 40,
+    sides: 8
+}
+const ASTEROID2 = {
+    x: 500,
+    y: DIV_H - 150,
+    r: 25,
+    sides: 6
+}
+const ASTEROID3 = {
+    x: 800,
+    y: 200,
+    r: 40,
+    sides: 5
+}
 
 let mutationChance = 0;
 let rocketCount = 0;
 let population = new Array();
 let moves = 10;
-let chromosomeCounter = 0;
-let shouldDraw = true;
+let chromosomeCounter = -1;
+let startFrame = 0;
+let shouldUpdate = false;
 
 const rocketStartingPos = {
     x: 50,
@@ -32,6 +57,7 @@ class Rocket {
     moves = new Array(20);
     direction = 0;
     position = new Two.Vector();
+    isAlive = true;
     velocity = {
         x: 0,
         y: 0
@@ -45,11 +71,8 @@ class Rocket {
 
         //generates random velocities for the rocket
 
-        this.velocity.x = Math.random() * 10 - 5;
-        this.velocity.y = Math.random() * 10 - 5;
-
-        // this.velocity.x = 0;
-        // this.velocity.y = 0;
+        this.velocity.x = Math.random() * 3 - 1.5;
+        this.velocity.y = Math.random() * 3 - 1.5;
 
         //generates random colors
 
@@ -59,24 +82,27 @@ class Rocket {
     }
 
     move() {
-        //just adds the velocity vector to the position vector each frame
-
-        // this.velocity.x = 0;
-        // this.velocity.y = 0;
-
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
     }
 
-    checkOutOfBounds() {
+    checkCollision() {
         if (this.position.x > board.width) {
-            this.position.x = 0;
+            this.isAlive = false;
         } if (this.position.x < 0) {
-            this.position.x = board.width;
+            this.isAlive = false;
         } if (this.position.y > board.height) {
-            this.position.y = 0;
+            this.isAlive = false;
         } if (this.position.y < 0) {
-            this.position.y = board.height;
+            this.isAlive = false;
+        }
+
+        if (distance(this.position.x, this.position.y, ASTEROID1.x, ASTEROID1.y) < ASTEROID1.r) {
+            this.isAlive = false;
+        } if (distance(this.position.y, this.position.y, ASTEROID2.x, ASTEROID2.y) < ASTEROID2.r) {
+            this.isAlive = false;
+        } if (distance(this.position.y, this.position.y, ASTEROID3.x, ASTEROID3.y) < ASTEROID3.r) {
+            this.isAlive = false;
         }
     }
 
@@ -140,8 +166,7 @@ class Rocket {
         //checks for out of bounds and calculates what the rotation of the rocket
         //should be based on x and y vel
 
-        this.checkOutOfBounds();
-        this.calcDir();
+        this.checkCollision();
 
         //finally, draws the rocket in the correct position with the correct velocity
 
@@ -151,6 +176,44 @@ class Rocket {
 
     removeObjects() {
         board.remove(this.body, this.topWing, this.botWing, this.rocketShip);
+    }
+
+    calcFitness() {
+        let distanceFromPlanet = distance(this.position.x, this.position.y, PLANET.x, PLANET.y);
+
+        if (!this.isAlive) {
+            distanceFromPlanet = distanceFromPlanet * 2;
+        }
+
+        return distanceFromPlanet;
+    }
+}
+
+class Obstacles {
+
+    constructor() {}
+
+    draw() {
+        this.planet = board.makePolygon(PLANET.x, PLANET.y, PLANET.r, PLANET.sides);
+        this.planet.fill = "rgba(150, 150, 150, 0.8)";
+        this.planet.scale = 1;
+        this.planet.linewidth = 2;
+        
+        this.core = board.makePolygon(PLANET.x, PLANET.y, PLANET.r / 5, 7);
+        this.core.fill = "#ad4913";
+
+        this.asteroid1 = board.makePolygon(ASTEROID1.x, ASTEROID1.y, ASTEROID1.r, ASTEROID1.sides);
+        this.asteroid1.fill = "rgba(150, 150, 150, 0.5)";
+
+        this.asteroid2 = board.makePolygon(ASTEROID2.x, ASTEROID2.y, ASTEROID2.r, ASTEROID2.sides);
+        this.asteroid2.fill = "rgba(150, 150, 150, 0.5)";
+
+        this.asteroid3 = board.makePolygon(ASTEROID3.x, ASTEROID3.y, ASTEROID3.r, ASTEROID3.sides);
+        this.asteroid3.fill = "rgba(150, 150, 150, 0.5)";
+    }
+
+    removeObjects() {
+        board.remove(this.planet, this.core, this.asteroid1, this.asteroid2, this.asteroid3);
     }
 }
 
@@ -167,24 +230,34 @@ $(document).ready(function() {
 
     board.appendTo(document.getElementById("twoCanvas"));
 
-    setInterval(updateFramerate, MS_BETWEEN_FPS_UPDATE);
-    setInterval(updateVelocity, MS_BETWEEN_CHROM);
+    setInterval(updateFramerateGeneCount, MS_BETWEEN_FPS_UPDATE);
 
-    initPop();
+    obstacles = new Obstacles();
 
     board.bind('update', function(frameCount) {
+
+        if (allDead()) {
+            init(findParents());
+        }
+
+        if ((frameCount - startFrame) % 200 == 0) {
+            updateVelocity();
+        }
+
         for (let i = 0; i < rocketCount; i++) {
             population[i].removeObjects();
         }
 
+        obstacles.removeObjects();
+
         board.clear();
 
-        if (shouldDraw) {
-            for (let i = 0; i < rocketCount; i++) {
-                population[i].move();
-                population[i].draw();
-            }
+        if (shouldUpdate) {
+            drawRockets();
         }
+
+        obstacles.draw();
+
     });
 
 });
@@ -193,15 +266,21 @@ $(document).ready(function() {
 //also might handle getting the value 
 
 function clickStart() {
+
+    shouldUpdate = true;
+
+    startFrame = board.frameCount;
+
+    $("#startBtn").unbind('click');
+    $("#startBtn").text("Disabled");
+
     updateModifiers();
 
-    if (!board.playing) {
-        board.play();
-        $("#startBtn").text("Pause");
-    } else {
-        board.pause();
-        $("#startBtn").text("Start");
-    }
+    initPop();
+
+    disableInput();
+
+    board.play();
 }
 
 function validateInput() {
@@ -226,8 +305,6 @@ function validateInput() {
 
 function initPop() {
 
-    updateModifiers();
-
     for (let i = 0; i < rocketCount; i++) {
         population[i] = new Rocket(rocketStartingPos.x, rocketStartingPos.y);
     }
@@ -235,8 +312,8 @@ function initPop() {
     for (let i = 0; i < rocketCount; i++) {
         for (let j = 0; j < moves; j++) {
             population[i].genes[j] = new Array(2);
-            population[i].genes[j][X_VELOCITY] = Math.floor( Math.random() * 10) - 5;
-            population[i].genes[j][Y_VELOCITY] = Math.floor( Math.random() * 10) - 5;
+            population[i].genes[j][X_VELOCITY] = Math.floor( Math.random() * 3) - 1.5;
+            population[i].genes[j][Y_VELOCITY] = Math.floor( Math.random() * 3) - 1.5;
         }
     }
 
@@ -259,7 +336,7 @@ function updateModifiers() {
 
 //updates the framerate counter in the bottom left of the window
 
-function updateFramerate() {
+function updateFramerateGeneCount() {
     $("#framerate").text( Math.floor( 1000 / board.timeDelta ) );
 
     if (board.timeDelta < (1000 / 60)) {
@@ -267,6 +344,8 @@ function updateFramerate() {
     } else {
         $("#framerate").css("color", "rgb(255, 0, 0)");
     }
+
+    $("#genecount").text( chromosomeCounter );
 }
 
 //runs every few seconds and changes each rocket's velocity to the next chromosome
@@ -274,16 +353,111 @@ function updateFramerate() {
 //they run through each of their chromosomes
 
 function updateVelocity() {
-    if (shouldDraw) {
+    if (chromosomeCounter == -1) {
+        chromosomeCounter++;
+        return;
+    }
+
+    if (shouldUpdate) {
         if (chromosomeCounter < moves) {
             for (let i = 0; i < rocketCount; i++) {
                 population[i].velocity.x = population[i].genes[chromosomeCounter][X_VELOCITY];
                 population[i].velocity.x = population[i].genes[chromosomeCounter][Y_VELOCITY];
             }
+            chromosomeCounter++;
         } else {
-            shouldDraw = false;
+            killAll();
+            shouldUpdate = false;
+            chromosomeCounter = -1;
+        }
+    }
+}
+
+function pausePlay() {
+    if (!board.playing) {
+        board.play();
+        $("#startBtn").text("Pause");
+    } else {
+        board.pause();
+        $("#startBtn").text("Start");
+    }
+}
+
+function disableInput() {
+    $("#mVal").prop("disabled", true);
+    $("#rVal").prop("disabled", true);
+}
+
+function drawRockets() {
+    for (let i = 0; i < rocketCount; i++) {
+        if (population[i].isAlive) {
+            population[i].move();
+            population[i].calcDir();
+        }
+        population[i].draw();
+    }
+}
+
+function distance(x1, y1, x2, y2) {
+    return Math.sqrt( Math.pow( (x2 - x1), 2) + Math.pow( (y2 - y1), 2 ) );
+}
+
+function findParents() {
+
+    let fitnessArr = new Array(rocketCount);
+
+    console.log("Calculating fitness...");
+
+    for (let i = 0; i < rocketCount; i++) {
+        fitnessArr[i] = [population[i].calcFitness(), i];
+    }
+
+    fitnessArr = insertionSort(fitnessArr);
+
+    fitnessArr = fitnessArr.slice(0, 4);
+
+    for (let i = 0; i < fitnessArr.length; i++) {
+        console.log(i + ". " + fitnessArr[i][0]);
+    }
+
+    board.pause();
+
+    return fitnessArr;
+
+}
+
+function insertionSort(arr) {
+    let length = arr.length;
+    for (let i = 1; i < length; i++) {
+        let key = arr[i][0];
+        let j = i - 1;
+        while (j >= 0 && arr[j][0] > key) {
+            arr[ j + 1 ][0] = arr[j][0];
+            j--;
+        }
+        arr[ j + 1 ][0] = key;
+    }
+    return arr;
+}
+
+function allDead() {
+    for (let i = 0; i < rocketCount; i++) {
+        if (population[i].isAlive) {
+            return false;
         }
     }
 
-    chromosomeCounter++;
+    return true;
+}
+
+function killAll() {
+    for (let i = 0; i < rocketCount; i++) {
+        population[i].isAlive = false;
+    }
+}
+
+function init(parents) {
+
+    //crossover and mutation shit right here baby
+
 }
