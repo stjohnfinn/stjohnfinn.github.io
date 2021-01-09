@@ -59,6 +59,7 @@ class Rocket {
         this.position = new Two.Vector();
         this.direction = 0;
         this.genes = new Array(moves);
+        this.finished = false;
         this.velocity = {
             x: 0,
             y: 0
@@ -408,7 +409,7 @@ function findParents() {
 
     let fitnessArr = new Array(rocketCount);
 
-    console.log("Calculating fitness...");
+    // console.log("Calculating fitness...");
 
     for (let i = 0; i < rocketCount; i++) {
         fitnessArr[i] = [population[i].calcFitness(), i];
@@ -420,7 +421,7 @@ function findParents() {
         totalFitness += population[i].calcFitness();
     }
 
-    console.log("Average Fitness: " + (totalFitness / rocketCount) );
+    // console.log("Average Fitness: " + (totalFitness / rocketCount) );
 
     fitnessArr = insertionSort(fitnessArr);
 
@@ -447,7 +448,7 @@ function insertionSort(arr) {
 
 function allDead() {
     for (let i = 0; i < rocketCount; i++) {
-        if (population[i].isAlive) {
+        if (population[i].isAlive || population[i].finished) {
             return false;
         }
     }
@@ -466,7 +467,7 @@ function initChildren(parents) {
     startFrame = board.frameCount;
     generation++;
     console.log("Genration: " + generation);
-    console.log("Performing crossover and mutation...");
+    // console.log("Performing crossover and mutation...");
 
     //crossover and mutation shit right here baby
 
@@ -496,7 +497,7 @@ function initChildren(parents) {
     board.play();
     shouldUpdate = true;
 
-    console.log("Finished.");
+    // console.log("Finished.");
 }
 
 function createOffspring(parents, childCount) {
@@ -511,6 +512,7 @@ function createOffspring(parents, childCount) {
 
         for (let j = 0; j < children[i].genes.length; j++) {
             if (Math.floor( Math.random() * 100) + 1 < mutationChance) {
+                console.log("mutating...");
                 children[i].genes[j][X_VELOCITY] = Number( (Math.random() * 3 - 1.5).toFixed(2) );
                 children[i].genes[j][Y_VELOCITY] = Number( (Math.random() * 3 - 1.5).toFixed(2) );
             }

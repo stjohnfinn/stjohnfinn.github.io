@@ -36,3 +36,5 @@ permalink: /index.html
 > change allDead to instead rely on if the rocket is dead or if the rocket is done with its moves
 
 > add in a line chart for the generational average fitness with d3.js
+
+> make it so they can drag 
