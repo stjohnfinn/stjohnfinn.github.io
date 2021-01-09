@@ -8,6 +8,8 @@ const MS_BETWEEN_CHROM = 2000;
 const Y_VELOCITY = 1;
 const X_VELOCITY = 0;
 const MS_BETWEEN_FPS_UPDATE = 150;
+const ABS_MAX_VEL = 5;
+
 const PLANET = {
     x: DIV_W - 120,
     y: DIV_H / 2,
@@ -36,11 +38,12 @@ const ASTEROID3 = {
 let mutationChance = 0;
 let rocketCount = 0;
 let population = new Array();
-let moves = 10;
+let moves = 5;
 let chromosomeCounter = -1;
 let startFrame = 0;
 let shouldUpdate = false;
 let generation = 0;
+let isFirstGen = true;
 
 const rocketStartingPos = {
     x: 50,
@@ -70,8 +73,10 @@ class Rocket {
 
         //generates random velocities for the rocket
 
-        this.velocity.x = Math.random() * 3 - 1.5;
-        this.velocity.y = Math.random() * 3 - 1.5;
+        if (isFirstGen) {
+            this.velocity.x = Math.random() * (ABS_MAX_VEL * 2) - ABS_MAX_VEL;
+            this.velocity.y = Math.random() * (ABS_MAX_VEL * 2) - ABS_MAX_VEL;
+        }
 
         //generates random colors
 
@@ -102,6 +107,10 @@ class Rocket {
             this.isAlive = false;
         } if (distance(this.position.x, this.position.y, ASTEROID3.x, ASTEROID3.y) < ASTEROID3.r) {
             this.isAlive = false;
+        }
+
+        if (distance(this.position.x, this.position.y, PLANET.x, PLANET.y) < 7) {
+            this.finished = true;
         }
     }
 
@@ -311,8 +320,8 @@ function initPop() {
     for (let i = 0; i < rocketCount; i++) {
         for (let j = 0; j < moves; j++) {
             population[i].genes[j] = new Array(2);
-            population[i].genes[j][X_VELOCITY] = Number( (Math.random() * 3 - 1.5).toFixed(2) );
-            population[i].genes[j][Y_VELOCITY] = Number( (Math.random() * 3 - 1.5).toFixed(2) );
+            population[i].genes[j][X_VELOCITY] = Number( (Math.random() * (ABS_MAX_VEL * 2) - ABS_MAX_VEL).toFixed(2) );
+            population[i].genes[j][Y_VELOCITY] = Number( (Math.random() * (ABS_MAX_VEL * 2) - ABS_MAX_VEL).toFixed(2) );
         }
     }
 
@@ -365,7 +374,7 @@ function updateVelocity() {
             }
             chromosomeCounter++;
         } else {
-            killAll();
+            endAll();
             shouldUpdate = false;
             chromosomeCounter = -1;
         }
@@ -391,7 +400,7 @@ function disableInput() {
 
 function drawRockets() {
     for (let i = 0; i < rocketCount; i++) {
-        if (population[i].isAlive) {
+        if (population[i].isAlive && !population[i].finished) {
             population[i].move();
             population[i].calcDir();
         }
@@ -407,6 +416,7 @@ function findParents() {
 
     board.pause();
 
+    isFirstGen = false;
     let fitnessArr = new Array(rocketCount);
 
     // console.log("Calculating fitness...");
@@ -421,7 +431,7 @@ function findParents() {
         totalFitness += population[i].calcFitness();
     }
 
-    // console.log("Average Fitness: " + (totalFitness / rocketCount) );
+    console.log("Average Fitness: " + (totalFitness / rocketCount) );
 
     fitnessArr = insertionSort(fitnessArr);
 
@@ -456,9 +466,9 @@ function allDead() {
     return true;
 }
 
-function killAll() {
+function endAll() {
     for (let i = 0; i < rocketCount; i++) {
-        population[i].isAlive = false;
+        population[i].finished = true;
     }
 }
 
@@ -496,6 +506,7 @@ function initChildren(parents) {
 
     board.play();
     shouldUpdate = true;
+    chromosomeCounter = 0;
 
     // console.log("Finished.");
 }
@@ -513,8 +524,8 @@ function createOffspring(parents, childCount) {
         for (let j = 0; j < children[i].genes.length; j++) {
             if (Math.floor( Math.random() * 100) + 1 < mutationChance) {
                 console.log("mutating...");
-                children[i].genes[j][X_VELOCITY] = Number( (Math.random() * 3 - 1.5).toFixed(2) );
-                children[i].genes[j][Y_VELOCITY] = Number( (Math.random() * 3 - 1.5).toFixed(2) );
+                children[i].genes[j][X_VELOCITY] = Number( (Math.random() * (ABS_MAX_VEL * 2) - ABS_MAX_VEL).toFixed(2) );
+                children[i].genes[j][Y_VELOCITY] = Number( (Math.random() * (ABS_MAX_VEL * 2) - ABS_MAX_VEL).toFixed(2) );
             }
         }
     }

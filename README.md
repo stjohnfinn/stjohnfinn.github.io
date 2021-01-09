@@ -4,17 +4,8 @@ permalink: /index.html
 
 ## Genetic Algorithm TODO
 
-> the longer the simulation is running, the lower the framerate becomes so figure out some way to fight this
-
-> basically have each chromosome be an x and y and have a setInterval function running in the background
-> that updates their velocities every couple of seconds
-
 > each time user clicks the start button it changes the variable that is used to iterate through every rocket, which ends
 > up causing OOB error, so either change it so it loops through population.length or find another fix later
-
-> change up the way the chromosome iteration works because that function will be running forever and the timing might be off since its not connected
-> to when the actual frames are updated because its a setInterval, so this might make it inconsistent
-> possibly just start it when the start button is pressed and then unbind it when the generation finishes with its moves [unbind interval here](https://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript)
 
 > make it so the fitness algorithm takes into account the time it takes for the rocket to reach the goal as well
 
@@ -37,4 +28,8 @@ permalink: /index.html
 
 > add in a line chart for the generational average fitness with d3.js
 
-> make it so they can drag 
+> make it so they can drag the obstacles onto the screen and have several obstacles
+
+> make it so that instead of always setting the velocity to random when the object is constructed, it instead uses its first gene when the first generation is undone
+
+> if all of the rockets are "finished" then it refuses to continue execution for some reason
