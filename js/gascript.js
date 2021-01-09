@@ -40,6 +40,7 @@ let moves = 10;
 let chromosomeCounter = -1;
 let startFrame = 0;
 let shouldUpdate = false;
+let generation = 0;
 
 const rocketStartingPos = {
     x: 50,
@@ -53,19 +54,16 @@ let board = new Two({width: DIV_W, height: DIV_H});
 //stores its genes and will eventually calculate the fitness as well
 
 class Rocket {
-
-    moves = new Array(20);
-    direction = 0;
-    position = new Two.Vector();
-    isAlive = true;
-    velocity = {
-        x: 0,
-        y: 0
-    }
-
-    genes = new Array(moves);
-
     constructor(startX, startY) {
+        this.isAlive = true;
+        this.position = new Two.Vector();
+        this.direction = 0;
+        this.genes = new Array(moves);
+        this.velocity = {
+            x: 0,
+            y: 0
+        }
+
         this.position.x = startX;
         this.position.y = startY;
 
@@ -99,9 +97,9 @@ class Rocket {
 
         if (distance(this.position.x, this.position.y, ASTEROID1.x, ASTEROID1.y) < ASTEROID1.r) {
             this.isAlive = false;
-        } if (distance(this.position.y, this.position.y, ASTEROID2.x, ASTEROID2.y) < ASTEROID2.r) {
+        } if (distance(this.position.x, this.position.y, ASTEROID2.x, ASTEROID2.y) < ASTEROID2.r) {
             this.isAlive = false;
-        } if (distance(this.position.y, this.position.y, ASTEROID3.x, ASTEROID3.y) < ASTEROID3.r) {
+        } if (distance(this.position.x, this.position.y, ASTEROID3.x, ASTEROID3.y) < ASTEROID3.r) {
             this.isAlive = false;
         }
     }
@@ -237,7 +235,7 @@ $(document).ready(function() {
     board.bind('update', function(frameCount) {
 
         if (allDead()) {
-            init(findParents());
+            initChildren(findParents());
         }
 
         if ((frameCount - startFrame) % 200 == 0) {
@@ -312,8 +310,8 @@ function initPop() {
     for (let i = 0; i < rocketCount; i++) {
         for (let j = 0; j < moves; j++) {
             population[i].genes[j] = new Array(2);
-            population[i].genes[j][X_VELOCITY] = Math.floor( Math.random() * 3) - 1.5;
-            population[i].genes[j][Y_VELOCITY] = Math.floor( Math.random() * 3) - 1.5;
+            population[i].genes[j][X_VELOCITY] = Number( (Math.random() * 3 - 1.5).toFixed(2) );
+            population[i].genes[j][Y_VELOCITY] = Number( (Math.random() * 3 - 1.5).toFixed(2) );
         }
     }
 
@@ -385,7 +383,9 @@ function pausePlay() {
 
 function disableInput() {
     $("#mVal").prop("disabled", true);
+    $("#mVal").css("opacity", "0.5");
     $("#rVal").prop("disabled", true);
+    $("#rVal").css("opacity", "0.5");
 }
 
 function drawRockets() {
@@ -404,6 +404,8 @@ function distance(x1, y1, x2, y2) {
 
 function findParents() {
 
+    board.pause();
+
     let fitnessArr = new Array(rocketCount);
 
     console.log("Calculating fitness...");
@@ -412,16 +414,19 @@ function findParents() {
         fitnessArr[i] = [population[i].calcFitness(), i];
     }
 
+    let totalFitness = 0
+
+    for (let i = 0; i < rocketCount; i++) {
+        totalFitness += population[i].calcFitness();
+    }
+
+    console.log("Average Fitness: " + (totalFitness / rocketCount) );
+
     fitnessArr = insertionSort(fitnessArr);
 
     fitnessArr = fitnessArr.slice(0, 4);
 
-    for (let i = 0; i < fitnessArr.length; i++) {
-        console.log(i + ". " + fitnessArr[i][0]);
-    }
-
-    board.pause();
-
+    console.log("Finished.");
     return fitnessArr;
 
 }
@@ -456,8 +461,60 @@ function killAll() {
     }
 }
 
-function init(parents) {
+function initChildren(parents) {
+
+    startFrame = board.frameCount;
+    generation++;
+    console.log("Genration: " + generation);
+    console.log("Performing crossover and mutation...");
 
     //crossover and mutation shit right here baby
 
+    let firstPairIndexA = Math.floor( Math.random() * 4);
+
+    let firstPairIndexB = 0;
+
+    do {
+        firstPairIndexB = Math.floor( Math.random() * 4);
+    } while (firstPairIndexB === firstPairIndexA);
+
+    let firstPair = new Array()
+    let secondPair = new Array()
+
+    for (let i = 0; i < parents.length; i++) {
+        if (i === firstPairIndexA || i === firstPairIndexB) {
+            firstPair.push(population[parents[i][1]]);
+        } else {
+            secondPair.push(population[parents[i][1]]);
+        }
+    }
+
+    let halfIndex = Math.floor( rocketCount / 2 );
+
+    population = createOffspring(firstPair, halfIndex).concat(createOffspring(secondPair, rocketCount - halfIndex));
+
+    board.play();
+    shouldUpdate = true;
+
+    console.log("Finished.");
+}
+
+function createOffspring(parents, childCount) {
+    let children = new Array(childCount);
+
+    for (let i = 0; i < rocketCount; i++) {
+        children[i] = new Rocket(rocketStartingPos.x, rocketStartingPos.y);
+
+        let crossoverIndex = Math.floor( Math.random() * moves);
+
+        children[i].genes = ( parents[0].genes.slice(0, crossoverIndex) ).concat( parents[1].genes.slice(crossoverIndex) );
+
+        for (let j = 0; j < children[i].genes.length; j++) {
+            if (Math.floor( Math.random() * 100) + 1 < mutationChance) {
+                children[i].genes[j][X_VELOCITY] = Number( (Math.random() * 3 - 1.5).toFixed(2) );
+                children[i].genes[j][Y_VELOCITY] = Number( (Math.random() * 3 - 1.5).toFixed(2) );
+            }
+        }
+    }
+    return children;
 }
