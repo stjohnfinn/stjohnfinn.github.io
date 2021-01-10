@@ -33,3 +33,9 @@ permalink: /index.html
 > make it so that instead of always setting the velocity to random when the object is constructed, it instead uses its first gene when the first generation is undone
 
 > if all of the rockets are "finished" then it refuses to continue execution for some reason
+
+> convergence happens way too damn fast
+
+### Known Bugs
+
+- when the new generations are created, throws errors when calculating direction, the fix i have implemented right now makes the first gen look funny

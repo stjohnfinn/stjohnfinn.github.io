@@ -8,7 +8,11 @@ const MS_BETWEEN_CHROM = 2000;
 const Y_VELOCITY = 1;
 const X_VELOCITY = 0;
 const MS_BETWEEN_FPS_UPDATE = 150;
-const ABS_MAX_VEL = 5;
+const ABS_MAX_VEL = 3;
+const rocketStartingPos = {
+    x: 400,
+    y: DIV_H / 2
+} 
 
 const PLANET = {
     x: DIV_W - 120,
@@ -38,17 +42,12 @@ const ASTEROID3 = {
 let mutationChance = 0;
 let rocketCount = 0;
 let population = new Array();
-let moves = 5;
+let moves = 50;
 let chromosomeCounter = -1;
 let startFrame = 0;
 let shouldUpdate = false;
 let generation = 0;
 let isFirstGen = true;
-
-const rocketStartingPos = {
-    x: 50,
-    y: DIV_H / 2
-} 
 
 let board = new Two({width: DIV_W, height: DIV_H});
 
@@ -93,20 +92,27 @@ class Rocket {
     checkCollision() {
         if (this.position.x > board.width) {
             this.isAlive = false;
+            this.finished = true;
         } if (this.position.x < 0) {
             this.isAlive = false;
+            this.finished = true;
         } if (this.position.y > board.height) {
             this.isAlive = false;
+            this.finished = true;
         } if (this.position.y < 0) {
             this.isAlive = false;
+            this.finished = true;
         }
 
         if (distance(this.position.x, this.position.y, ASTEROID1.x, ASTEROID1.y) < ASTEROID1.r) {
             this.isAlive = false;
+            this.finished = true;
         } if (distance(this.position.x, this.position.y, ASTEROID2.x, ASTEROID2.y) < ASTEROID2.r) {
             this.isAlive = false;
+            this.finished = true;
         } if (distance(this.position.x, this.position.y, ASTEROID3.x, ASTEROID3.y) < ASTEROID3.r) {
             this.isAlive = false;
+            this.finished = true;
         }
 
         if (distance(this.position.x, this.position.y, PLANET.x, PLANET.y) < 7) {
@@ -147,21 +153,24 @@ class Rocket {
     }
 
     draw() {
+
         // drawing each part of the body of the rocket
 
-        this.body = board.makeRectangle(this.position.x, this.position.y, 50, 12);
-        this.topWing = board.makePath(this.position.x - 30, this.position.y - 17.5, this.position.x - 25, this.position.y - 6, this.position.x - 5, this.position.y - 6, this.position.x - 30, this.position.y - 17.5, true);
-        this.botWing = board.makePath(this.position.x - 30, this.position.y + 17.5, this.position.x - 25, this.position.y + 6, this.position.x - 5, this.position.y + 6, this.position.x - 30, this.position.y + 17.5, true);
+        this.body = board.makeRectangle(this.position.x, this.position.y, 30, 8);
+
+        // this.topWing = board.makePath(this.position.x - 30, this.position.y - 17.5, this.position.x - 25, this.position.y - 6, this.position.x - 5, this.position.y - 6, this.position.x - 30, this.position.y - 17.5, true);
+        // this.botWing = board.makePath(this.position.x - 30, this.position.y + 17.5, this.position.x - 25, this.position.y + 6, this.position.x - 5, this.position.y + 6, this.position.x - 30, this.position.y + 17.5, true);
         
         // coloring each section of the rocket
 
         this.body.fill = "rgba(" + this.randRed.toString() + ", " + this.randGreen.toString() + ", " + this.randBlue.toString() + ", 0.5)";
-        this.topWing.fill = "rgba(50, 50, 50, 0.5)";
-        this.botWing.fill = "rgba(50, 50, 50, 0.5)";
+
+        // this.topWing.fill = "rgba(50, 50, 50, 0.5)";
+        // this.botWing.fill = "rgba(50, 50, 50, 0.5)";
 
         //grouping each part of the body
 
-        this.rocketShip = board.makeGroup(this.body, this.topWing, this.botWing);
+        this.rocketShip = board.makeGroup(this.body/*, this.topWing, this.botWing */);
 
         // more styling
 
@@ -187,6 +196,7 @@ class Rocket {
     }
 
     calcFitness() {
+
         let distanceFromPlanet = distance(this.position.x, this.position.y, PLANET.x, PLANET.y);
 
         if (!this.isAlive) {
@@ -202,6 +212,9 @@ class Obstacles {
     constructor() {}
 
     draw() {
+
+        // console.log("drawing obs");
+
         this.planet = board.makePolygon(PLANET.x, PLANET.y, PLANET.r, PLANET.sides);
         this.planet.fill = "rgba(150, 150, 150, 0.8)";
         this.planet.scale = 1;
@@ -218,6 +231,8 @@ class Obstacles {
 
         this.asteroid3 = board.makePolygon(ASTEROID3.x, ASTEROID3.y, ASTEROID3.r, ASTEROID3.sides);
         this.asteroid3.fill = "rgba(150, 150, 150, 0.5)";
+
+        // console.log("done drawing obstacles");
     }
 
     removeObjects() {
@@ -248,7 +263,7 @@ $(document).ready(function() {
             initChildren(findParents());
         }
 
-        if ((frameCount - startFrame) % 200 == 0) {
+        if ((frameCount - startFrame) % 10 == 0) {
             updateVelocity();
         }
 
@@ -361,7 +376,10 @@ function updateFramerateGeneCount() {
 //they run through each of their chromosomes
 
 function updateVelocity() {
-    if (chromosomeCounter == -1) {
+
+    // console.log("updateVel");
+
+    if (chromosomeCounter < 0) {
         chromosomeCounter++;
         return;
     }
@@ -370,7 +388,7 @@ function updateVelocity() {
         if (chromosomeCounter < moves) {
             for (let i = 0; i < rocketCount; i++) {
                 population[i].velocity.x = population[i].genes[chromosomeCounter][X_VELOCITY];
-                population[i].velocity.x = population[i].genes[chromosomeCounter][Y_VELOCITY];
+                population[i].velocity.y = population[i].genes[chromosomeCounter][Y_VELOCITY];
             }
             chromosomeCounter++;
         } else {
@@ -402,7 +420,13 @@ function drawRockets() {
     for (let i = 0; i < rocketCount; i++) {
         if (population[i].isAlive && !population[i].finished) {
             population[i].move();
-            population[i].calcDir();
+            if (!isFirstGen) {
+                if (chromosomeCounter > 0) {
+                    population[i].calcDir();
+                }
+            } else {
+                population[i].calcDir();
+            }
         }
         population[i].draw();
     }
@@ -413,6 +437,8 @@ function distance(x1, y1, x2, y2) {
 }
 
 function findParents() {
+
+    // console.log("findParents");
 
     board.pause();
 
@@ -437,7 +463,7 @@ function findParents() {
 
     fitnessArr = fitnessArr.slice(0, 4);
 
-    console.log("Finished.");
+    // console.log("Finished.");
     return fitnessArr;
 
 }
@@ -457,12 +483,45 @@ function insertionSort(arr) {
 }
 
 function allDead() {
+
+    // console.log("alldead");
+
+    let counter = 0;
+
     for (let i = 0; i < rocketCount; i++) {
-        if (population[i].isAlive || population[i].finished) {
+         if (population[i].finished) {
+            counter++;
+         }
+    }
+
+    if (counter == rocketCount) {
+        shouldUpdate = false;
+        // console.log("All rockets are dead or finished...");
+        return true;
+    }
+
+    counter = 0;
+
+    for (let i = 0; i < rocketCount; i++) {
+        if (population[i].isFinished) {
+            counter++;
+        }
+    }
+
+    if (counter == rocketCount) {
+        shouldUpdate = false;
+        // console.log("All rockets are dead or finished...");
+        return true;
+    }
+
+    for (let i = 0; i < rocketCount; i++) {
+        if (population[i].isAlive || !population[i].finished) {
             return false;
         }
     }
 
+    shouldUpdate = false;
+    // console.log("All rockets are dead or finished...");
     return true;
 }
 
@@ -474,12 +533,10 @@ function endAll() {
 
 function initChildren(parents) {
 
-    startFrame = board.frameCount;
     generation++;
-    console.log("Genration: " + generation);
-    // console.log("Performing crossover and mutation...");
 
-    //crossover and mutation shit right here baby
+    // console.log("initChildren");
+    console.log("Genration: " + generation);
 
     let firstPairIndexA = Math.floor( Math.random() * 4);
 
@@ -500,21 +557,25 @@ function initChildren(parents) {
         }
     }
 
-    let halfIndex = Math.floor( rocketCount / 2 );
+    let splitIndex = Math.floor( Math.random() * rocketCount );
 
-    population = createOffspring(firstPair, halfIndex).concat(createOffspring(secondPair, rocketCount - halfIndex));
+    population = createOffspring(firstPair, splitIndex).concat(createOffspring(secondPair, rocketCount - splitIndex));
 
     board.play();
+    startFrame = board.frameCount + 1;
     shouldUpdate = true;
     chromosomeCounter = 0;
 
-    // console.log("Finished.");
+    // console.log("next gen");
 }
 
 function createOffspring(parents, childCount) {
+
+    // console.log("createOffspring");
+
     let children = new Array(childCount);
 
-    for (let i = 0; i < rocketCount; i++) {
+    for (let i = 0; i < childCount; i++) {
         children[i] = new Rocket(rocketStartingPos.x, rocketStartingPos.y);
 
         let crossoverIndex = Math.floor( Math.random() * moves);
@@ -523,7 +584,7 @@ function createOffspring(parents, childCount) {
 
         for (let j = 0; j < children[i].genes.length; j++) {
             if (Math.floor( Math.random() * 100) + 1 < mutationChance) {
-                console.log("mutating...");
+                // console.log("mutating...");
                 children[i].genes[j][X_VELOCITY] = Number( (Math.random() * (ABS_MAX_VEL * 2) - ABS_MAX_VEL).toFixed(2) );
                 children[i].genes[j][Y_VELOCITY] = Number( (Math.random() * (ABS_MAX_VEL * 2) - ABS_MAX_VEL).toFixed(2) );
             }
