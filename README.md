@@ -39,3 +39,12 @@ permalink: /index.html
 ### Known Bugs
 
 - when the new generations are created, throws errors when calculating direction, the fix i have implemented right now makes the first gen look funny
+
+# Links for Later
+
+[React JS Tutorial](https://www.youtube.com/watch?v=DLX62G4lc44&ab_channel=freeCodeCamp.org)
+[Dev Ed React Tutorial](https://www.youtube.com/watch?v=dGcsHMXbSOA&ab_channel=DevEd)
+
+### Regarding The Day of Birth
+
+- currently working on step two, have to figure out a way to reveal the link to the next page
