@@ -1,13 +1,196 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+    --main-bg-color: rgb(76, 109, 108);
+    --secondary-bg-color: rgb(56, 89, 88);
+    --primary-font-color: rgb(200, 200, 200);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    background-color: var(--main-bg-color);
+    margin: 0;
+    padding: 0;
+    font-family: 'Atkinson';
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+svg {
+    fill: rgba(255, 255, 255, 0.507);
+    transition: 0.2s all;
+}
+
+@font-face {
+    font-family: 'Atkinson';
+    src: url('./fonts/Atkinson-Hyperlegible-Regular-102.otf');
+}
+
+#app-cont {
+    height: 100vh;
+}
+
+#header-cont {
+    background-color: var(--secondary-bg-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 7vh;
+}
+
+#header-cont > p {
+    margin: 0;
+    margin-left: 1vw;
+    font-size: 4vh;
+    color: black;
+}
+
+#nav-cont {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 15vw;
+}
+
+.nav-inactive {
+    font-size: 2vh;
+    position: relative;
+    color: black;
+}
+
+.nav-inactive::after {
+    position: absolute;
+    display: block;
+    background: black;
+    content: '';
+    width: 0%;
+    height: 2px;
+    opacity: 0;
+    transition: 0.2s all;
+}
+
+.nav-inactive:hover::after {
+    width: 100%;
+    opacity: 1;
+}
+
+.nav-active::after {
+    width: 100%;
+    opacity: 1;
+}
+
+#about-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#github-logo:hover > svg {
+    fill: black;
+}
+
+#linkedin-logo:hover > svg {
+    fill: rgb(0, 65, 119);
+}
+
+#contact-cont {
+    width: 10vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+#portfolio-cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#portfolio-sec-cont {
+    width: 60vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.project {
+    border: 2px black solid;
+    border-radius: 2px;
+    height: 25vh;
+    width: 13vw;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    transition: 0.2s all;
+    overflow: hidden;
+    position: relative;
+}
+
+.project:hover {
+    box-shadow: 0px 0px 4px black;
+}
+
+.project:hover > .proj-overlay {
+    opacity: 0.8;
+    transform: translateX(0);
+}
+
+.project > img {
+    height: 100%;
+    position: absolute;
+}
+
+.proj-overlay {
+    position: absolute;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: 0.2s all;
+    background: black;
+    color: white;
+    text-align: right;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.proj-overlay > p, .proj-overlay > h2 {
+    margin: 0;
+    padding: 10px;
+}
+
+.proj-overlay > h2 {
+    font-size: 24px;
+    border-right: 2px white solid;
+    opacity: 1;
+}
+
+.proj-overlay > p {
+    font-size: 12px;
+}
+
+#bio {
+    margin-top: 10px;
+    height: 40vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#bio-text {
+    width: 20vw;
+}
+
+#bio > img {
+    height: 40vh;
+    border: 2px black solid;
+    border-radius: 3px;
 }
