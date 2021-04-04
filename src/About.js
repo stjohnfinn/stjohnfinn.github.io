@@ -7,13 +7,16 @@ class About extends React.Component {
                 <div id='bio'>
                     <div id='bio-text'>
                         <h1>Hi, I'm Finn</h1>
-                        <p>I'm an aspiring software engineer currently working towards a BA in cognitive science, with a specialization in machine learning and artificial intelligence at UC San Diego</p>
+                        <p>I'm an aspiring software engineer currently working toward a BA in cognitive science, with a specialization in machine learning and artificial intelligence at UC San Diego</p>
                         <h1>Proficiencies</h1>
                         <h3>
                             React<br/>
+                            Puppeteer<br/>
                             Javascript<br/>
                             HTML & CSS<br/>
                             Google Firebase<br/>
+                            Python<br/>
+                            Java<br/>
                         </h3>
                     </div>
                     <img src='./images/bio-pic.jpg' />

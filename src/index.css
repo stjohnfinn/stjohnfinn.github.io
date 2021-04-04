@@ -1,6 +1,6 @@
 :root {
-    --main-bg-color: rgb(76, 109, 108);
-    --secondary-bg-color: rgb(56, 89, 88);
+    --main-bg-color: rgb(182, 182, 182);
+    --secondary-bg-color: rgb(90, 111, 168);
     --primary-font-color: rgb(200, 200, 200);
 }
 
@@ -10,6 +10,7 @@ body {
     padding: 0;
     font-family: 'Atkinson';
     color: black;
+    min-height: 100%;
 }
 
 a {
@@ -27,6 +28,7 @@ svg {
 }
 
 #app-cont {
+    min-width: 100%;
     height: 100vh;
 }
 
@@ -42,8 +44,9 @@ svg {
 #header-cont > p {
     margin: 0;
     margin-left: 1vw;
-    font-size: 4vh;
+    font-size: 2vw;
     color: black;
+    width: 100%;
 }
 
 #nav-cont {
@@ -52,11 +55,11 @@ svg {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 15vw;
+    width: 20%;
 }
 
 .nav-inactive {
-    font-size: 2vh;
+    font-size: 1vw;
     position: relative;
     color: black;
 }
@@ -83,6 +86,8 @@ svg {
 }
 
 #about-cont {
+    min-width: 100%;
+    min-height: 93vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -98,7 +103,7 @@ svg {
 }
 
 #contact-cont {
-    width: 10vw;
+    width: 10%;
     display: flex;
     justify-content: space-around;
 }
@@ -121,8 +126,8 @@ svg {
 .project {
     border: 2px black solid;
     border-radius: 2px;
-    height: 25vh;
-    width: 13vw;
+    height: 17vw;
+    width: 17vw;
     margin-top: 10px;
     margin-left: 5px;
     margin-right: 5px;
@@ -141,7 +146,9 @@ svg {
 }
 
 .project > img {
-    height: 100%;
+    min-width: 100%;
+    max-width: 150%;
+    min-height: 100%;
     position: absolute;
 }
 
@@ -166,19 +173,20 @@ svg {
 }
 
 .proj-overlay > h2 {
-    font-size: 24px;
+    font-size: 2vw;
     border-right: 2px white solid;
     opacity: 1;
 }
 
 .proj-overlay > p {
-    font-size: 12px;
+    font-size: 0.75vw;
 }
 
 #bio {
     margin-top: 10px;
-    height: 40vh;
-    width: 50vw;
+    height: 100%;
+    min-width: 50%;
+    width: 50%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -186,11 +194,24 @@ svg {
 }
 
 #bio-text {
-    width: 20vw;
+    width: 40%;
+}
+
+#bio-text > h1 {
+    font-size: 2vw;
+}
+
+#bio-text > h3 {
+    font-size: 1vw;
+}
+
+#bio-text > p {
+    font-size: 0.9vw;
 }
 
 #bio > img {
-    height: 40vh;
+    height: 20vw;
+    width: 20vw;
     border: 2px black solid;
     border-radius: 3px;
 }

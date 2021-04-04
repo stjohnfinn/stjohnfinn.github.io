@@ -9,7 +9,7 @@ class Portfolio extends React.Component {
             {
                 title: 'BiasML',
                 description: 'Political Bias Detector, built with Google Cloud AutoML NLP and Firebase',
-                imgSrc: './images/icon.png',
+                imgSrc: './images/biasml.png',
                 link: 'https://bias-ml-analysis.herokuapp.com/'
             },
             {
