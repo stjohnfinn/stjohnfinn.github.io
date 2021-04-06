@@ -1,12 +1,22 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   width: 100vw;
-  background-image: url("./images/stardust.png");
   margin: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   font-family: "Roboto";
   overflow-x: hidden;
+}
+body #bg {
+  margin: 0;
+  position: fixed;
+  z-index: -100;
+  overflow-y: hidden;
+  top: 0;
 }
 body::-webkit-scrollbar {
   width: 8px;
@@ -19,11 +29,12 @@ body::-webkit-scrollbar-track-piece {
 }
 body::-webkit-scrollbar-thumb {
   background: rgba(20, 20, 20, 0.7);
-  border-radius: 4px;
+  border-radius: 1px;
 }
 
 a:visited {
   text-decoration: none;
+  color: black;
 }
 
 a {
@@ -37,7 +48,9 @@ button:active {
 #center {
   width: 72%;
   height: 100%;
-  background-color: #cfcfcf;
+  background-color: rgba(255, 255, 255, 0.93);
+  margin-bottom: 14vw;
+  box-shadow: 0px 0px 20px black;
 }
 #center .title {
   font-size: 40px;
@@ -45,6 +58,12 @@ button:active {
   font-weight: bold;
   text-align: left;
   padding-left: 5%;
+}
+#center #name {
+  font-size: 60px;
+  border-bottom: 2px #0bae81 solid;
+  padding-bottom: 30px;
+  padding-top: 20px;
 }
 
 #bio #bio-content {
@@ -58,10 +77,10 @@ button:active {
 }
 #bio #bio-content #photo img {
   width: 100%;
-  border: 2px black solid;
+  border: 2px #0bae81 solid;
 }
 #bio #bio-content #bio-text {
-  border-left: 2px black solid;
+  border-left: 2px #0bae81 solid;
   padding-left: 20px;
   width: 45%;
   font-size: 15px;
@@ -73,7 +92,7 @@ button:active {
 
 #works #works-content {
   display: grid;
-  grid-template-columns: 15vw 15vw;
+  grid-template-columns: 15vw 15vw 15vw;
   grid-template-rows: 15vw;
   gap: 5px;
   justify-content: center;
@@ -116,6 +135,10 @@ button:active {
   background-image: url("./images/icon.png");
   background-size: cover;
 }
+#works #works-content #lostinspace {
+  background-image: url("./images/lostinspacelogo.png");
+  background-size: cover;
+}
 
 #contact #links {
   display: flex;
@@ -124,21 +147,9 @@ button:active {
   align-items: center;
   height: 100px;
 }
-#contact #links #github::before {
-  background-color: #844abb;
-}
-#contact #links #linkedin::before {
-  background-color: #2c5d9c;
-}
-#contact #links #insta::before {
-  background: #a906e4;
-}
-#contact #links #onlyfans::before {
-  background-color: #3581e4;
-}
 #contact #links a {
   font-family: "Roboto";
-  border: 2px black solid;
+  border: 2px #0bae81 solid;
   border-radius: 2px;
   height: 40px;
   width: 120px;
@@ -154,6 +165,7 @@ button:active {
   width: 100%;
   opacity: 0;
   transition: 0.3s;
+  background-color: #0bae81;
 }
 #contact #links a:hover::before {
   height: 100%;
@@ -170,6 +182,104 @@ button:active {
   font-size: 15px;
   font-weight: bolder;
   z-index: 100;
+}
+
+#navbar {
+  margin: 0;
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: 10fr 3fr 2.5fr;
+  align-items: center;
+}
+#navbar div {
+  background-color: rgba(255, 255, 255, 0.93);
+  align-self: stretch;
+  justify-self: stretch;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 0px 0px 4px 4px;
+  border: 2px black solid;
+  border-top: none;
+}
+#navbar div div {
+  border: none;
+}
+#navbar div a {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+#navbar div a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: #0bae81;
+  width: 0%;
+  height: 5px;
+  bottom: 0;
+  left: 0;
+  transition: 0.2s all;
+  opacity: 0;
+}
+#navbar div a:hover::after {
+  width: 100%;
+  opacity: 1;
+}
+#navbar p {
+  margin: 0;
+  font-family: "Recursive";
+  color: black;
+  margin: 0;
+  text-align: center;
+  position: relative;
+}
+#navbar #centernav {
+  grid-column-start: 2;
+}
+
+#proficiencies {
+  display: flex;
+  flex-direction: column;
+}
+#proficiencies #profslist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#proficiencies #profslist .prof-cont {
+  margin: 30px;
+}
+#proficiencies #profslist div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+#proficiencies #profslist div img {
+  width: 30%;
+}
+#proficiencies #profslist div div {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  width: 25%;
+}
+#proficiencies #profslist div div h3 {
+  font-family: "Recursive";
+  width: 100%;
+}
+#proficiencies #profslist div div p {
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

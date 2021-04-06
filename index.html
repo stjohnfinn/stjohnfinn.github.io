@@ -4,41 +4,87 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Recursive&family=Roboto&display=swap" rel="stylesheet">
         <link rel='stylesheet' href='./style.css' />
-        <script src='./index.js'></script>
+        <script src="./packages/jquery/jquery-3.6.0.js"></script>
+        <script src='./packages/simpleParallax.js-master/dist/simpleParallax.js' ></script>
+        <script src='./script.js'></script>
+        <title>Finn St John</title>
     </head>
     <body>
+        <img
+            id='bg' 
+            src='./images/theonlywayBLUR.png'
+        />
+        <div id='navbar'>
+            <div id='centernav'>
+                    <a href='#center' >
+                        <div>
+                            <p>BIO</p>
+                        </div>
+                    </a>
+                    <a href='#proficiencies' >
+                        <div>
+                            <p>PORTFOLIO</p>
+                        </div>
+                    </a>
+                    <a href='#contact' >
+                        <div>
+                            <p>CONTACT</p>
+                        </div>
+                    </a>
+            </div>
+        </div>
         <div id='center'>
             <div id='bio'>
-                <p class='title'>Hi, I'm Finn</p>
+                <p class='title' id='name' >Hi, I'm Finn</p>
                 <div id=bio-content>
                     <div id='bio-text'>
                         <p>
-                            I'm a second year cognitive science student at UC San Diego and 
+                            I'm a full-stack developer from Long Beach, CA, working remotely from La Jolla, CA. <br><br>
+                            I'm currently a second year cognitive science student at UC San Diego and 
                             my degree is focused on artificial intelligence and machine learning.
                             Currently, I have experience in web development and some native applications 
                             development experience and I hope to eventually work on furthering our understanding 
-                            of intelligence and ourselves through improving artificial intelligence. God this is such 
-                            bullshit like I cannot believe I just wrote that it's disgusting. PLease god just hire me to 
-                            do your frontend work.
-                            <br><br>
-                            <h3>Proficiencies</h3>
-                            <a>Javascript</a>
-                            <br>
-                            <a>React</a>
-                            <br>
-                            <a>Google Firebase</a>
-                            <br>
-                            <a>Puppeteer</a>
-                            <br>
-                            <a>Python</a>
-                            <br>
-                            <a>Java</a>
-                            <br>
-                            <a>HTML & CSS</a>
+                            of intelligence and ourselves through improving artificial intelligence.<br><br>
+                            God this is such bullshit like I cannot believe I just wrote that it's disgusting. Please god just hire me to 
+                            do your frontend work.<br><br>
+                            In my free time, I like to kill evil monsters and save princesses in Ooo with my dog brother Jake.
                         </p>
                     </div>
                     <div id='photo'>
                         <img src='./images/IMG_3397 - Copy.jpg' />
+                    </div>
+                </div>
+            </div>
+            <div id='proficiencies'>
+                <p class='title'>Proficiencies</p>
+                <div id='profslist'>
+                    <div class='prof-cont'>
+                        <img src='./images/undraw_design.svg' />
+                        <div>
+                            <h3>HTML/CSS</h3>
+                            <p>I can create intuitive, user-friendly sites with very cool buttons and like pretty good vibes overall i think.</p>
+                        </div>
+                    </div>
+                    <div class='prof-cont'>
+                        <div>
+                            <h3>Javascript</h3>
+                            <p>I am experienced in Javascript and many of its frameworks and libraries including React and Puppeteer. I work hard to build the most interactive and responsive sites in order to bring in the most business.</p>
+                        </div>
+                        <img src='./images/undraw_website.svg' />
+                    </div>
+                    <div class='prof-cont'>
+                        <img src='./images/undraw_Server.svg' />
+                        <div>
+                            <h3>Google Firebase</h3>
+                            <p>The backends for my sites are created using Google Firebase. This means my sites are reliable and provide unwavering user support as well as frequent and efficient testing and updating.</p>
+                        </div>
+                    </div>
+                    <div class='prof-cont'>
+                        <div>
+                            <h3>Reddit</h3>
+                            <p>I consider myself an avid redditor, and I am a moderator in several redditor communities including r/funny, r/liberal, r/porn, r/fortnitebr, and r/leagueoflegends</p>
+                        </div>
+                        <img src='https://i.redd.it/2qy7unjo2j331.png' />
                     </div>
                 </div>
             </div>
@@ -59,34 +105,43 @@
                                 <h1>NASA Voyager<br>Probe Tracker</h1>
                             </div>
                         </div>
-                    </a>    
+                    </a>
+                    <a href='./assets/LostInSpace.jar'>
+                        <div class='project' id='lostinspace'>
+                            <div>
+                                <h1>Lost In Space</h1>
+                                <p>Click to Download and Play!</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div id='contact'>
                 <p class='title'>Contact Me</p>
                 <div id=links>
-                    <a id='github'>
+                    <a id='github' href='https://github.com/stjohnfinn'>
                         <div>
                             <p>Github</p>
                         </div>
                     </a>
-                    <a id='linkedin'>
+                    <a id='linkedin' href='https://www.linkedin.com/in/finn-st-john-9202b8203/'>
                         <div>
                             <p>LinkedIn</p>
                         </div>
                     </a>
-                    <a id='insta'>
+                    <a id='insta' href='https://www.instagram.com/finnst.john/?hl=en'>
                         <div>
                             <p>Instagram</p>
                         </div>
                     </a>
-                    <a id='onlyfans'>
+                    <a id='onlyfans' href='https://onlyfans.com/'>
                         <div>
                             <p>OnlyFans</p>
                         </div>
                     </a>
                 </div>
             </div>
+            <div id='bottom-buffer'></div>
         </div>
     </body>
 </html>
