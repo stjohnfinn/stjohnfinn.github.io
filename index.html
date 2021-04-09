@@ -2,7 +2,12 @@
 <html>
     <head>
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Recursive&family=Roboto&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&family=Montserrat:wght@1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap" rel="stylesheet">
         <link rel='stylesheet' href='./style.css' />
         <script src="./packages/jquery/jquery-3.6.0.js"></script>
         <script src='./packages/simpleParallax.js-master/dist/simpleParallax.js' ></script>
@@ -15,128 +20,150 @@
             src='./images/theonlywayBLUR.png'
         />
         <div id='navbar'>
-            <div id='centernav'>
-                    <a href='#center' >
-                        <div>
-                            <p>BIO</p>
-                        </div>
-                    </a>
-                    <a href='#proficiencies' >
-                        <div>
-                            <p>PORTFOLIO</p>
-                        </div>
-                    </a>
-                    <a href='#contact' >
-                        <div>
-                            <p>CONTACT</p>
-                        </div>
-                    </a>
-            </div>
+            <a href='#center' >
+                <div>
+                    <p>BIO</p>
+                </div>
+            </a>
+            <a href='#proficiencies' >
+                <div>
+                    <p>PORTFOLIO</p>
+                </div>
+            </a>
+            <a href='#contact' >
+                <div>
+                    <p>CONTACT</p>
+                </div>
+            </a>
         </div>
         <div id='center'>
             <div id='bio'>
-                <p class='title' id='name' >Hi, I'm Finn</p>
+                <div id='name-cont'>
+                    <p class='title' id='name' >Hi, I'm Finn</p>
+                </div>
                 <div id=bio-content>
                     <div id='bio-text'>
                         <p>
-                            I'm a full-stack developer from Long Beach, CA, working remotely from La Jolla, CA. <br><br>
-                            I'm currently a second year cognitive science student at UC San Diego and 
+                            I'm a <span class='white'>full-stack developer</span> from Long Beach, CA, working remotely from La Jolla, CA. 
+                            I'm currently a second year <span class='white'>cognitive science</span> student at UC San Diego and 
                             my degree is focused on artificial intelligence and machine learning.
-                            Currently, I have experience in web development and some native applications 
+                            Currently, I have substantial experience in <span class='white'>web development</span> and some native applications 
                             development experience and I hope to eventually work on furthering our understanding 
-                            of intelligence and ourselves through improving artificial intelligence.<br><br>
-                            God this is such bullshit like I cannot believe I just wrote that it's disgusting. Please god just hire me to 
-                            do your frontend work.<br><br>
-                            In my free time, I like to kill evil monsters and save princesses in Ooo with my dog brother Jake.
+                            of intelligence and ourselves through improving <span class='white'>artificial intelligence</span>. In my free time, I like to kill 
+                            evil monsters and save princesses in Ooo with my dog brother Jake.
                         </p>
-                    </div>
-                    <div id='photo'>
-                        <img src='./images/IMG_3397 - Copy.jpg' />
                     </div>
                 </div>
             </div>
             <div id='proficiencies'>
-                <p class='title'>Proficiencies</p>
+                <p class='title'>What I Do</p>
                 <div id='profslist'>
                     <div class='prof-cont'>
                         <img src='./images/undraw_design.svg' />
                         <div>
-                            <h3>HTML/CSS</h3>
-                            <p>I can create intuitive, user-friendly sites with very cool buttons and like pretty good vibes overall i think.</p>
+                            <p>I create <a class='important' href='#works'>intuitive</a>, <a class='important' href='#works'>elegant</a>, user-friendly sites that present users with an incredible UX.</p>
                         </div>
                     </div>
                     <div class='prof-cont'>
                         <div>
-                            <h3>Javascript</h3>
-                            <p>I am experienced in Javascript and many of its frameworks and libraries including React and Puppeteer. I work hard to build the most interactive and responsive sites in order to bring in the most business.</p>
+                            <p>I am experienced in <a class='important' href='#works'>Javascript</a> and many of its frameworks and libraries including <a class='important' href='#works'>React</a> and <a class='important' href='#works'>Puppeteer</a>. I work hard to build the most interactive and responsive sites in order to bring in the most business.</p>
                         </div>
                         <img src='./images/undraw_website.svg' />
                     </div>
                     <div class='prof-cont'>
                         <img src='./images/undraw_Server.svg' />
                         <div>
-                            <h3>Google Firebase</h3>
-                            <p>The backends for my sites are created using Google Firebase. This means my sites are reliable and provide unwavering user support as well as frequent and efficient testing and updating.</p>
+                            <p>The <a class='important' href='#works'>backend</a> for my sites are created using Google Firebase. This means my sites are <a class='important' href='#works'>reliable</a> and provide unwavering user support as well as frequent and efficient <a class='important' href='#works'>testing</a> and <a class='important' href='#works'>updating.</a></p>
                         </div>
-                    </div>
-                    <div class='prof-cont'>
-                        <div>
-                            <h3>Reddit</h3>
-                            <p>I consider myself an avid redditor, and I am a moderator in several redditor communities including r/funny, r/liberal, r/porn, r/fortnitebr, and r/leagueoflegends</p>
-                        </div>
-                        <img src='https://i.redd.it/2qy7unjo2j331.png' />
                     </div>
                 </div>
             </div>
             <div id='works'>
                 <p class='title'>Works</p>
                 <div id=works-content>
-                    <a href='https://bias-ml-analysis.herokuapp.com/' >
-                        <div class='project' id='bias-ml'>
-                            <div>
-                                <h1>Bias ML</h1>
-                                <p>SD Hacks 2021 Winner</p>
-                            </div>
+                    <div class='project'>
+                        <div class='proj-title'>
+                            <img src='./images/biasML.png'/>
+                            <p>
+                                Bias ML Political Bias Detector
+                            </p>
                         </div>
-                    </a>
-                    <a href='https://voyager-tracker-js.herokuapp.com/' >
-                        <div class='project' id='voy-tracker'>
-                            <div>
-                                <h1>NASA Voyager<br>Probe Tracker</h1>
-                            </div>
+                        <div class='proj-desc'>
+                            <p>
+                                A website designed to read text from a news article and determine if the content is biased or not. The front-end is built in react, the backend is built with Google Firebase, and the detection algorithm is built using Google's AutoML Library. <br><br>Winner of SD Hacks 2021!
+                            </p>
+                            <p>
+                                I helped design the front-end for this project and set up the Auto ML data retrieval system using Google Firebase cloud functions. Additionally, I assembled the script that used Puppeteer to scrape the article's contents from the page. The data visualization was also set up by me using ChartJS.
+                            </p>
                         </div>
-                    </a>
-                    <a href='./assets/LostInSpace.jar'>
-                        <div class='project' id='lostinspace'>
-                            <div>
-                                <h1>Lost In Space</h1>
-                                <p>Click to Download and Play!</p>
-                            </div>
+                        <a>
+                            <div>Explore</div>
+                            <div><img src='./images/right-arrow.svg' /></div>
+                        </a>
+                    </div>
+                    <div class='project'>
+                        <div class='proj-title'>
+                            <img src='./images/voyager.jpg'/>
+                            <p>
+                                NASA Voyager Probe Tracker
+                            </p>
                         </div>
-                    </a>
+                        <div class='proj-desc'>
+                            <p>
+                                A website that scrapes data off the official NASA mission status page and presents it in a simpler fasion. The site also randomly draws an image from the NASA Astronomy picture of the day API each time it is loaded.
+                            </p>
+                            <p>
+                                I built the entire site as a side project for myself because [reason].
+                            </p>
+                        </div>
+                        <a>
+                            <div>Explore</div>
+                            <div><img src='./images/right-arrow.svg' /></div>
+                        </a>
+                    </div>
+                    <div class='project'>
+                        <div class='proj-title'>
+                            <img src='./images/lostinspacelogo.png'/>
+                            <p>
+                                Lost In Space
+                            </p>
+                        </div>
+                        <div class='proj-desc'>
+                            <p>
+                                This was a very small text-based game built in Java using the standard Swing library. It is centered around an astronaut onboard a ship with an alien with no food, water, or oxygen.
+                            </p>
+                            <p>
+                                I built this project for a small software engineering program I attended in high school at NYU. 
+                            </p>
+                        </div>
+                        <a>
+                            <div>Explore</div>
+                            <div><img src='./images/right-arrow.svg' /></div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div id='contact'>
-                <p class='title'>Contact Me</p>
+                <p class='title'>Let's Work Together</p>
                 <div id=links>
                     <a id='github' href='https://github.com/stjohnfinn'>
                         <div>
-                            <p>Github</p>
+                            <p>GITHUB</p>
                         </div>
                     </a>
                     <a id='linkedin' href='https://www.linkedin.com/in/finn-st-john-9202b8203/'>
                         <div>
-                            <p>LinkedIn</p>
+                            <p>LINKEDIN</p>
                         </div>
                     </a>
                     <a id='insta' href='https://www.instagram.com/finnst.john/?hl=en'>
                         <div>
-                            <p>Instagram</p>
+                            <p>INSTAGRAM</p>
                         </div>
                     </a>
                     <a id='onlyfans' href='https://onlyfans.com/'>
                         <div>
-                            <p>OnlyFans</p>
+                            <p>ONLYFANS</p>
                         </div>
                     </a>
                 </div>
