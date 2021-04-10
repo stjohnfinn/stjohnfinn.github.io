@@ -168,38 +168,39 @@ button:active {
 
 #works {
     #works-content {
-        margin-left: 60px;
 
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        align-items: flex-start;
+        align-items: center;
 
         .project {
             margin-top: 20px;
             margin-bottom: 20px;
 
             a {
-                width: 5vw;
+                width: 100%;
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: flex-start;
                 cursor: pointer;
                 transition: 0.2s all;
+                font-size: 2.5vmin;
 
                 img {
-                    width: 20px;
+                    width: 3vmin;
+                    transition: 0.2s all;
+                    margin-left: 10px;
                 }
 
-                &:hover {
-                    width: 5.5vw;
+                &:hover img {
+                    margin-left: 20px;
                 }
             }
         }
 
         .proj-title {
-            width: 50vw;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -213,7 +214,8 @@ button:active {
 
             p {
                 margin-left: 2vw;
-                font-size: 3vmin;
+                font-size: 4vmin;
+                font-family: 'Montserrat';
             }
         }
 
@@ -224,7 +226,8 @@ button:active {
             align-items: flex-start;
 
             p {
-                width: 50%;
+                font-family: 'Roboto';
+                width: 100%;
                 font-size: 1.5vmin;
                 margin-left: 3vw;
             }
@@ -281,6 +284,29 @@ button:active {
             }
         }
     }
+
+    #other-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 150px;
+
+        p {
+            margin: 0;
+            font-family: 'Roboto';
+            font-size: min(0.85vw, 15px);
+            letter-spacing: 3px;
+        }
+
+        a {
+            margin: 0;
+            font-family: 'Roboto';
+            font-size: min(0.85vw, 15px);
+            letter-spacing: 3px;
+            cursor: pointer;
+        }
+    }
 }
 
 #navbar {
@@ -288,7 +314,7 @@ button:active {
     position: fixed;
     height: 40px;
     top: 0;
-    left: 60vw;
+    left: 50vw;
     background-color: transparent;
     display: flex;
     justify-content: space-evenly;
@@ -315,7 +341,7 @@ button:active {
                 font-family: 'Roboto';
                 text-align: center;
                 letter-spacing: 2px;
-                font-size: min(0.85vw, 15px);
+                font-size: max(0.85vw, 20px);
                 padding: 2px;
                 border: 2px transparent solid;
                 transition: 0.2s all;

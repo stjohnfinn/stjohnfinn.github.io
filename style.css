@@ -135,33 +135,34 @@ button:active {
 }
 
 #works #works-content {
-  margin-left: 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
 }
 #works #works-content .project {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 #works #works-content .project a {
-  width: 5vw;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   cursor: pointer;
   transition: 0.2s all;
+  font-size: 2.5vmin;
 }
 #works #works-content .project a img {
-  width: 20px;
+  width: 3vmin;
+  transition: 0.2s all;
+  margin-left: 10px;
 }
-#works #works-content .project a:hover {
-  width: 5.5vw;
+#works #works-content .project a:hover img {
+  margin-left: 20px;
 }
 #works #works-content .proj-title {
-  width: 50vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -174,7 +175,8 @@ button:active {
 }
 #works #works-content .proj-title p {
   margin-left: 2vw;
-  font-size: 3vmin;
+  font-size: 4vmin;
+  font-family: "Montserrat";
 }
 #works #works-content .proj-desc {
   width: 40vw;
@@ -183,7 +185,8 @@ button:active {
   align-items: flex-start;
 }
 #works #works-content .proj-desc p {
-  width: 50%;
+  font-family: "Roboto";
+  width: 100%;
   font-size: 1.5vmin;
   margin-left: 3vw;
 }
@@ -230,13 +233,33 @@ button:active {
   z-index: 100;
   letter-spacing: 3px;
 }
+#contact #other-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 150px;
+}
+#contact #other-links p {
+  margin: 0;
+  font-family: "Roboto";
+  font-size: min(0.85vw, 15px);
+  letter-spacing: 3px;
+}
+#contact #other-links a {
+  margin: 0;
+  font-family: "Roboto";
+  font-size: min(0.85vw, 15px);
+  letter-spacing: 3px;
+  cursor: pointer;
+}
 
 #navbar {
   margin: 0;
   position: fixed;
   height: 40px;
   top: 0;
-  left: 60vw;
+  left: 50vw;
   background-color: transparent;
   display: flex;
   justify-content: space-evenly;
@@ -263,7 +286,7 @@ button:active {
   font-family: "Roboto";
   text-align: center;
   letter-spacing: 2px;
-  font-size: min(0.85vw, 15px);
+  font-size: max(0.85vw, 20px);
   padding: 2px;
   border: 2px transparent solid;
   transition: 0.2s all;
