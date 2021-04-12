@@ -339,6 +339,7 @@ button:active {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: 0.2s all;
 }
 #navbar a div:hover p {
   color: gray;
