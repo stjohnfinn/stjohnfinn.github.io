@@ -2,12 +2,9 @@
 <html>
     <head>
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&family=Montserrat:wght@1,700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Archivo&display=swap" rel="stylesheet">
         <link rel='stylesheet' href='./style.css' />
         <script src="./packages/jquery/jquery-3.6.0.js"></script>
         <script src='./packages/simpleParallax.js-master/dist/simpleParallax.js' ></script>
@@ -15,22 +12,19 @@
         <title>Finn St John</title>
     </head>
     <body>
-        <img
-            id='bg' 
-            src='./images/theonlywayBLUR.png'
-        />
+        <div id='bg'></div>
         <div id='navbar'>
-            <a href='#center' >
+            <a href='#bio'>
                 <div>
                     <p>BIO</p>
                 </div>
             </a>
-            <a href='#proficiencies' >
+            <a href='#works'>
                 <div>
-                    <p>PORTFOLIO</p>
+                    <p>WORKS</p>
                 </div>
             </a>
-            <a href='#contact' >
+            <a href='#contact'>
                 <div>
                     <p>CONTACT</p>
                 </div>
@@ -39,24 +33,22 @@
         <div id='center'>
             <div id='bio'>
                 <div id='name-cont'>
-                    <p class='title' id='name' >Hi, I'm Finn</p>
+                    <p class='title' id='name' >hi, i'm finn</p>
                 </div>
+                <hr>
                 <div id=bio-content>
                     <div id='bio-text'>
                         <p>
-                            I'm a <span class='white'>full-stack developer</span> from Long Beach, CA, working remotely from La Jolla, CA. 
-                            I'm currently a second year <span class='white'>cognitive science</span> student at UC San Diego and 
-                            my degree is focused on artificial intelligence and machine learning.
-                            Currently, I have substantial experience in <span class='white'>web development</span> and some native applications 
-                            development experience and I hope to eventually work on furthering our understanding 
-                            of intelligence and ourselves through improving <span class='white'>artificial intelligence</span>. In my free time, I like to kill 
-                            evil monsters and save princesses in Ooo with my dog brother Jake.
+                            I'm a <span class='important' >full-stack developer</span> from Long Beach, CA, working remotely from <span class='important'>La Jolla, CA</span>. 
+                            I'm currently a second year cognitive science student at UC San Diego and 
+                            my degree is focused on <span class='important'>artificial intelligence</span> and machine learning.
                         </p>
                     </div>
                 </div>
             </div>
+            <hr>
             <div id='proficiencies'>
-                <p class='title'>What I Do</p>
+                <p class='title'>what i do</p>
                 <div id='profslist'>
                     <div class='prof-cont'>
                         <img src='./images/undraw_design.svg' />
@@ -73,13 +65,14 @@
                     <div class='prof-cont'>
                         <img src='./images/undraw_Server.svg' />
                         <div>
-                            <p>The <a class='important' href='#works'>backend</a> for my sites are created using Google Firebase. This means my sites are <a class='important' href='#works'>reliable</a> and provide unwavering user support as well as frequent and efficient <a class='important' href='#works'>testing</a> and <a class='important' href='#works'>updating.</a></p>
+                            <p>The <a class='important' href='#works'>backend</a> for my sites are created using Google Firebase. This means my sites are <a class='important' href='#works'>reliable</a> and provide unwavering user support as well as frequent and efficient <a class='important' href='#works'>testing</a> and <a class='important' href='#works'>updating</a>.</p>
                         </div>
                     </div>
                 </div>
             </div>
+            <hr>
             <div id='works'>
-                <p class='title'>Works</p>
+                <p class='title'>works</p>
                 <div id=works-content>
                     <div class='project'>
                         <div class='proj-title'>
@@ -98,7 +91,7 @@
                             </p>
                         </div>
                         <a>
-                            <div>Explore</div>
+                            <div>EXPLORE</div>
                             <div><img src='./images/right-arrow.svg' /></div>
                         </a>
                     </div>
@@ -117,7 +110,7 @@
                             </p>
                         </div>
                         <a>
-                            <div>Explore</div>
+                            <div>EXPLORE</div>
                             <div><img src='./images/right-arrow.svg' /></div>
                         </a>
                     </div>
@@ -136,14 +129,15 @@
                             </p>
                         </div>
                         <a>
-                            <div>Explore</div>
+                            <div>EXPLORE</div>
                             <div><img src='./images/right-arrow.svg' /></div>
                         </a>
                     </div>
                 </div>
             </div>
+            <hr>
             <div id='contact'>
-                <p class='title'>Let's Work Together</p>
+                <p class='title'>let's work together</p>
                 <div id=links>
                     <a id='github' href='https://github.com/stjohnfinn'>
                         <div>
