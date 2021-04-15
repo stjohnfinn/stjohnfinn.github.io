@@ -1,4 +1,9 @@
 ## ToDo:
+X - JUST MAKE IT SO IT WORKS FOR THE MOST PART
+X - redo the word things
+X - make the links work
+X - make the resume download link work
+
 O - make all of the words in the bio clickable and link to works
 O - even out all of the spacing
 O - add links in readme and links to github

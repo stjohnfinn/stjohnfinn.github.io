@@ -63,7 +63,7 @@ body .important {
   text-shadow: 0rem 0rem #666666, 0rem 0rem #adadad;
 }
 body .important:hover {
-  text-shadow: 0.2rem 0.2rem #666666, 0.4rem 0.4rem #adadad;
+  text-shadow: 0.15rem 0.15rem #666666, 0.3rem 0.3rem #adadad;
 }
 
 a:visited {
@@ -95,7 +95,7 @@ button:active {
   font-weight: bold;
   text-align: left;
   padding-left: 5%;
-  text-shadow: 0.2rem 0.2rem 0px #666666, 0.4rem 0.4rem #adadad;
+  text-shadow: 0.15rem 0.15rem 0px #666666, 0.3rem 0.3rem #adadad;
 }
 #center #name {
   font-size: 4vmax;
@@ -129,15 +129,8 @@ button:active {
   padding-left: 20px;
   width: 90%;
 }
-#bio #bio-content #bio-text h3 {
-  font-family: "Recursive";
-  font-size: 30px;
-}
 #bio #bio-content #bio-text p {
   font-size: min(4vmin, 60px);
-}
-#bio #bio-content #bio-text p a::after {
-  color: black;
 }
 
 #works {
