@@ -7,3 +7,4 @@ O - make the background of the site's dots be connected sometimes, add like a li
 O - make it responsive
 O - even out font sizes
 O - animated background
+O - search engine optimize
