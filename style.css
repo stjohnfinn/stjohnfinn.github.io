@@ -95,7 +95,7 @@ button:active {
   font-weight: bold;
   text-align: left;
   padding-left: 5%;
-  text-shadow: 0.2rem 0.2rem 0px #666666, 0.4rem 0.4rem #adadad;
+  text-shadow: 0.05em 0.05em #666666, 0.1em 0.1em #adadad;
 }
 #center #name {
   font-size: 4vmax;
@@ -161,10 +161,10 @@ button:active {
   padding: 10px;
   border: 1px #b4b4b4 solid;
   transition: 0.2s all;
-  box-shadow: 0rem 0rem #666666, 0rem 0rem #adadad;
+  box-shadow: 0em 0em #666666, 0em 0em #adadad;
 }
 #works #works-content .project:hover {
-  box-shadow: 0.2rem 0.2rem #666666, 0.4rem 0.4rem #adadad;
+  box-shadow: 0.2em 0.2em #666666, 0.4em 0.4em #adadad;
 }
 #works #works-content .project a {
   width: 13vw;

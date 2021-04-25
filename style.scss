@@ -117,7 +117,7 @@ button:active {
         text-align: left;
         padding-left: 5%;
 
-        text-shadow: 0.2rem 0.2rem 0px rgb(102, 102, 102), 0.4rem 0.4rem rgb(173, 173, 173);
+        text-shadow: 0.05em 0.05em rgb(102, 102, 102), 0.1em 0.1em rgb(173, 173, 173);
     }
 
     #name {
@@ -195,10 +195,10 @@ button:active {
             border: 1px rgb(180, 180, 180) solid;
             transition: 0.2s all;
 
-            box-shadow: 0rem 0rem rgb(102, 102, 102), 0rem 0rem rgb(173, 173, 173);
+            box-shadow: 0em 0em rgb(102, 102, 102), 0em 0em rgb(173, 173, 173);
 
             &:hover {
-                box-shadow: 0.2rem 0.2rem rgb(102, 102, 102), 0.4rem 0.4rem rgb(173, 173, 173);
+                box-shadow: 0.2em 0.2em rgb(102, 102, 102), 0.4em 0.4em rgb(173, 173, 173);
             }
 
             a {
