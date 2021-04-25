@@ -11,15 +11,15 @@
         <script src='./script.js'></script>
         <title>Finn St John</title>
     </head>
-    <body>
+    <body id='body'>
         <div id='bg'></div>
         <div id='navbar'>
-            <a href='#bio'>
+            <a href='#body'>
                 <div>
                     <p>BIO</p>
                 </div>
             </a>
-            <a href='#works'>
+            <a href='#works-hr'>
                 <div>
                     <p>WORKS</p>
                 </div>
@@ -39,9 +39,8 @@
                 <div id=bio-content>
                     <div id='bio-text'>
                         <p>
-                            I'm a <span class='important' >full-stack developer</span> from Long Beach, CA, working remotely from <span class='important'>La Jolla, CA</span>. 
-                            I'm currently a second year cognitive science student at UC San Diego and 
-                            my degree is focused on <span class='important'>artificial intelligence</span> and machine learning.
+                            I'm a <a href='#works-hr' class='important'>self-taught</a> <a href='#works-hr' class='important' >full-stack web developer</a> from Long Beach, CA, working remotely from <a href='#works-hr' class='important'>La Jolla, CA</a>. 
+                            I'm currently a second year cognitive science student at UC San Diego focusing on <a href='#works-hr' class='important'>artificial intelligence</a> and <a href='#works-hr' class='important'>machine learning</a>.
                         </p>
                     </div>
                 </div>
@@ -53,24 +52,24 @@
                     <div class='prof-cont'>
                         <img src='./images/undraw_design.svg' />
                         <div>
-                            <p>I create <a class='important' href='#works'>intuitive</a>, <a class='important' href='#works'>elegant</a>, user-friendly sites that present users with an incredible UX.</p>
+                            <p>I create <a class='important' href='#works-hr'>intuitive</a>, <a class='important' href='#works-hr'>elegant</a>, user-friendly sites that present users with an incredible UI/UX.</p>
                         </div>
                     </div>
                     <div class='prof-cont'>
                         <div>
-                            <p>I am experienced in <a class='important' href='#works'>Javascript</a> and many of its frameworks and libraries including <a class='important' href='#works'>React</a> and <a class='important' href='#works'>Puppeteer</a>. I work hard to build the most interactive and responsive sites in order to bring in the most business.</p>
+                            <p>I am experienced in <a class='important' href='#works-hr'>Javascript</a> and many of its frameworks and libraries including <a class='important' href='#works-hr'>React</a> and <a class='important' href='#works-hr'>Puppeteer</a>. I work hard to build the most interactive and responsive sites in order to bring in the most business.</p>
                         </div>
                         <img src='./images/undraw_website.svg' />
                     </div>
                     <div class='prof-cont'>
                         <img src='./images/undraw_Server.svg' />
                         <div>
-                            <p>The <a class='important' href='#works'>backend</a> for my sites are created using Google Firebase. This means my sites are <a class='important' href='#works'>reliable</a> and provide unwavering user support as well as frequent and efficient <a class='important' href='#works'>testing</a> and <a class='important' href='#works'>updating</a>.</p>
+                            <p>The <a class='important' href='#works-hr'>backend</a> for my sites is created using Google Firebase. This means my sites are <a class='important' href='#works-hr'>reliable</a> and provide unwavering user support as well as frequent and efficient <a class='important' href='#works-hr'>testing</a> and <a class='important' href='#works-hr'>updating</a>.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr id='works-hr'>
             <div id='works'>
                 <p class='title'>works</p>
                 <div id=works-content>
@@ -87,10 +86,28 @@
                                 the backend is built with Google Firebase, and the detection algorithm is built using Google's AutoML Library. 
                                 I helped design the front-end for this project and set up the Auto ML data retrieval system using Google Firebase cloud functions. 
                                 Additionally, I assembled the script that used Puppeteer to scrape the article's contents from the page. The data visualization was also set up by me using ChartJS.
-                                Winner of SD Hacks 2021!
+                                <span>Winner of SD Hacks 2021</span>!
                             </p>
                         </div>
-                        <a>
+                        <a href='https://github.com/eal001/bias-ml'>
+                            <div>EXPLORE</div>
+                            <div><img src='./images/right-arrow.svg' /></div>
+                        </a>
+                    </div>
+                    <div class='project'>
+                        <div class='proj-title'>
+                            <img src='./images/ete.png'/>
+                            <p>
+                                Escape To Earth (GA)
+                            </p>
+                        </div>
+                        <div class='proj-desc'>
+                            <p>
+                                A customizable genetic algorithm that figures out how to guide a group of rockets to earth built using mostly vanilla JavaScript, except for help of PixiJS for the graphics. Also implements 
+                                an elementary physics engine. This was built as a personal project as an introduction to weak artificial intelligence. 
+                            </p>
+                        </div>
+                        <a href='https://escapetoearth.herokuapp.com/'>
                             <div>EXPLORE</div>
                             <div><img src='./images/right-arrow.svg' /></div>
                         </a>
@@ -106,10 +123,10 @@
                             <p>
                                 A website that scrapes data off the official NASA mission status page and presents it in a simpler fasion. 
                                 The site also randomly draws an image from the NASA Astronomy picture of the day API each time it is loaded. 
-                                I built the entire site as a side project for myself because [reason].
+                                I built the site on my own as a personal project in order to gain experience with REST APIs, Puppeteer, Firebase, and React.
                             </p>
                         </div>
-                        <a>
+                        <a href='https://voyager-tracker-js.herokuapp.com/'>
                             <div>EXPLORE</div>
                             <div><img src='./images/right-arrow.svg' /></div>
                         </a>
@@ -128,7 +145,7 @@
                                 I built this project for a small software engineering program I attended in high school at NYU. 
                             </p>
                         </div>
-                        <a>
+                        <a href='assets/LostInSpace.jar'>
                             <div>EXPLORE</div>
                             <div><img src='./images/right-arrow.svg' /></div>
                         </a>
@@ -163,7 +180,7 @@
                 <div id='other-links'>
                     <p>stjohn.finn@gmail.com</p>
                     <p>(562) 370-4197</p>
-                    <a>My Resume</a>
+                    <a href='./assets/Resume.pdf'>My Resume</a>
                 </div>
             </div>
             <div id='bottom-buffer'></div>
