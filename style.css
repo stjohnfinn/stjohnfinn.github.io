@@ -60,10 +60,10 @@ body .important {
   cursor: pointer;
   font-weight: bold;
   transition: 0.2s all;
-  text-shadow: 0rem 0rem #666666, 0rem 0rem #adadad;
+  text-shadow: 0ex 0ex #666666, 0ex 0ex #adadad;
 }
 body .important:hover {
-  text-shadow: 0.2rem 0.2rem #666666, 0.4rem 0.4rem #adadad;
+  text-shadow: 0.15ex 0.15ex #666666, 0.3ex 0.3ex #adadad;
 }
 
 a:visited {
@@ -89,22 +89,27 @@ button:active {
   border-radius: 0px 0px 3px 3px;
   animation: glow 3s infinite alternate;
 }
+@media screen and (max-width: 768px) {
+  #center {
+    width: 90%;
+  }
+}
 #center .title {
-  font-size: 3.5vmax;
+  font-size: 5vmax;
   font-family: "Major Mono Display";
   font-weight: bold;
   text-align: left;
   padding-left: 5%;
-  text-shadow: 0.2rem 0.2rem 0px #666666, 0.4rem 0.4rem #adadad;
+  text-shadow: 0.07ex 0.07ex 0px #666666, 0.14ex 0.14ex #adadad;
 }
 #center #name {
-  font-size: 4vmax;
   margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 #center #name-cont {
   display: flex;
   align-items: center;
-  height: 15vh;
 }
 
 #bio {
@@ -118,19 +123,17 @@ button:active {
   justify-content: space-around;
   align-items: center;
 }
-#bio #bio-content #photo {
-  width: 40%;
-}
-#bio #bio-content #photo img {
-  width: 100%;
-  border: 2px white solid;
-}
 #bio #bio-content #bio-text {
   padding-left: 20px;
   width: 90%;
 }
 #bio #bio-content #bio-text p {
   font-size: min(4vmin, 60px);
+}
+@media screen and (max-width: 768px) {
+  #bio #bio-content #bio-text p {
+    font-size: 1.5rem;
+  }
 }
 
 #works {
@@ -144,8 +147,9 @@ button:active {
   align-items: center;
 }
 #works #works-content .project {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  max-width: 85%;
+  margin-top: 2%;
+  margin-bottom: 2%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -185,11 +189,15 @@ button:active {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 4vw;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+  background-color: green;
 }
 #works #works-content .proj-title img {
-  width: 4vw;
-  height: 4vw;
+  max-width: 100%;
+  width: 8%;
+  height: 8%;
 }
 #works #works-content .proj-title p {
   font-weight: bold;
@@ -197,7 +205,7 @@ button:active {
   font-size: 4vmin;
 }
 #works #works-content .proj-desc {
-  width: max(40vw, 500px);
+  max-width: 80%;
 }
 #works #works-content .proj-desc p {
   line-height: 1.5;
@@ -295,8 +303,23 @@ button:active {
   justify-content: space-around;
   align-items: center;
 }
+@media screen and (max-width: 768px) {
+  #proficiencies #profslist div {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 768px) {
+  #proficiencies #profslist div:nth-child(2) {
+    flex-direction: column-reverse;
+  }
+}
 #proficiencies #profslist div img {
   width: 40%;
+}
+@media screen and (max-width: 768px) {
+  #proficiencies #profslist div img {
+    width: 90%;
+  }
 }
 #proficiencies #profslist div div {
   display: flex;
@@ -305,9 +328,19 @@ button:active {
   text-align: left;
   width: 40%;
 }
+@media screen and (max-width: 768px) {
+  #proficiencies #profslist div div {
+    width: 90%;
+  }
+}
 #proficiencies #profslist div div p {
   font-size: min(2vw, 40px);
   width: 100%;
+}
+@media screen and (max-width: 768px) {
+  #proficiencies #profslist div div p {
+    font-size: 2rem;
+  }
 }
 
 #navbar {
@@ -319,6 +352,11 @@ button:active {
   justify-content: space-between;
   align-items: flex-end;
   width: 14vw;
+}
+@media screen and (max-width: 768px) {
+  #navbar {
+    display: none;
+  }
 }
 #navbar a {
   margin: 10px;

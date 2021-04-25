@@ -78,10 +78,10 @@ body {
         cursor: pointer;
         font-weight: bold;
         transition: 0.2s all;
-        text-shadow: 0rem 0rem $gray-dark, 0rem 0rem $gray-light;
+        text-shadow: 0ex 0ex $gray-dark, 0ex 0ex $gray-light;
 
         &:hover {
-            text-shadow: 0.2rem 0.2rem $gray-dark, 0.4rem 0.4rem $gray-light;
+            text-shadow: 0.15ex 0.15ex $gray-dark, 0.3ex 0.3ex $gray-light;
         }
     }
 
@@ -103,6 +103,10 @@ button:active {
 }
 
 #center {
+    @media screen and (max-width: 768px) {
+        width: 90%;
+    }
+
     width: 72%;
     height: 100%;
     background-color: $color-1;
@@ -111,24 +115,24 @@ button:active {
     animation: glow 3s infinite alternate;
 
     .title {
-        font-size: 3.5vmax;
+        font-size: 5vmax;
         font-family: 'Major Mono Display';
         font-weight: bold;
         text-align: left;
         padding-left: 5%;
 
-        text-shadow: 0.2rem 0.2rem 0px $gray-dark, 0.4rem 0.4rem $gray-light;
+        text-shadow: 0.07ex 0.07ex 0px $gray-dark, 0.14ex 0.14ex $gray-light;
     }
 
     #name {
-        font-size: 4vmax;
         margin: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     #name-cont {
         display: flex;
         align-items: center;
-        height: $title-size;
     }
 }
 
@@ -143,20 +147,15 @@ button:active {
         justify-content: space-around;
         align-items: center;
 
-        #photo {
-            width: 40%;
-
-            img {
-                width: 100%;
-                border: 2px $color-1 solid;
-            }
-        }
-
         #bio-text {
             padding-left: 20px;
             width: 90%;
 
             p {
+                @media screen and (max-width: 768px) {
+                    font-size: 1.5rem;
+                }
+
                 font-size: min(4vmin, 60px);
             }
         }
@@ -175,8 +174,9 @@ button:active {
         align-items: center;
 
         .project {
-            margin-top: 30px;
-            margin-bottom: 30px;
+            max-width: 85%;
+            margin-top: 2%;
+            margin-bottom: 2%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -223,11 +223,15 @@ button:active {
             display: flex;
             flex-direction: row;
             align-items: center;
-            height: 4vw;
+            justify-content: space-evenly;
+            margin: 0;
+            padding: 0;
+            background-color: green;
 
             img {
-                width: 4vw;
-                height: 4vw;
+                max-width: 100%;
+                width: 8%;
+                height: 8%;
             }
 
             p {
@@ -238,7 +242,7 @@ button:active {
         }
 
         .proj-desc {
-            width: max(40vw, 500px);
+            max-width: 80%;
 
             p {
                 line-height: 1.5;
@@ -354,8 +358,22 @@ button:active {
             justify-content: space-around;
             align-items: center;
 
+            @media screen and (max-width: 768px) {
+                flex-direction: column;
+            }
+
+            &:nth-child(2) {
+                @media screen and (max-width: 768px) {
+                    flex-direction: column-reverse;
+                }
+            }
+
             img {
                 width: 40%;
+
+                @media screen and (max-width: 768px) {
+                    width: 90%;
+                }
             }
 
             div {
@@ -365,9 +383,17 @@ button:active {
                 text-align: left;
                 width: 40%;
 
+                @media screen and (max-width: 768px) {
+                    width: 90%;
+                }
+
                 p {
                     font-size: min(2vw, 40px);
                     width: 100%;
+
+                    @media screen and (max-width: 768px) {
+                        font-size: 2rem;
+                    }
                 }
             }
         }
@@ -383,6 +409,10 @@ button:active {
     justify-content: space-between;
     align-items: flex-end;
     width: 14vw;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
 
     a {
         margin: 10px;
