@@ -1,17 +1,357 @@
-/* Error: expected "{".
- *     ,
- * 121 |         text-shadow: 0.05em 0.05em rgb(102, 102, 102), 0.1em 0.1em rgb(173, 173, 173);
- *     |                                                                                      ^
- *     '
- *   style.scss 121:86  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: expected "{".\a     \2577 \a 121 \2502          text-shadow: 0.05em 0.05em rgb(102, 102, 102), 0.1em 0.1em rgb(173, 173, 173);\d\a     \2502                                                                                       ^\a     \2575 \a   style.scss 121:86  root stylesheet';
+@keyframes glow {
+  0% {
+    box-shadow: 0px 0px 10px #adadad;
+  }
+  100% {
+    box-shadow: 0px 0px 10px black;
+  }
 }
+@font-face {
+  font-family: "Archivo BI";
+  src: url("./assets/fonts/Archivo/Archivo-VariableFont_wdth,wght.ttf");
+  font-weight: 500;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100vw;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  font-family: "Archivo";
+  overflow-x: hidden;
+}
+body hr {
+  width: 95%;
+  border: none;
+  background-color: #adadad;
+  height: 1px;
+}
+body #bg {
+  margin: 0;
+  position: fixed;
+  z-index: -100;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("./images/dot-grid.png");
+}
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  background-color: rgba(20, 20, 20, 0.8);
+}
+body::-webkit-scrollbar-track-piece {
+  background-color: rgba(20, 20, 20, 0);
+}
+body::-webkit-scrollbar-thumb {
+  background: rgba(20, 20, 20, 0.7);
+  border-radius: 1px;
+}
+body p {
+  font-family: "IBM Plex Mono";
+  font-size: 35px;
+}
+body .important {
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s all;
+  text-shadow: 0rem 0rem #666666, 0rem 0rem #adadad;
+}
+body .important:hover {
+  text-shadow: 0.2rem 0.2rem #666666, 0.4rem 0.4rem #adadad;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+button:active {
+  outline: none;
+}
+
+#center {
+  width: 72%;
+  height: 100%;
+  background-color: white;
+  margin-bottom: 14vw;
+  border-radius: 0px 0px 3px 3px;
+  animation: glow 3s infinite alternate;
+}
+#center .title {
+  font-size: 3.5vmax;
+  font-family: "Major Mono Display";
+  font-weight: bold;
+  text-align: left;
+  padding-left: 5%;
+  text-shadow: 0.2rem 0.2rem 0px #666666, 0.4rem 0.4rem #adadad;
+}
+#center #name {
+  font-size: 4vmax;
+  margin: 0;
+}
+#center #name-cont {
+  display: flex;
+  align-items: center;
+  height: 15vh;
+}
+
+#bio {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#bio #bio-content {
+  height: 85vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+#bio #bio-content #photo {
+  width: 40%;
+}
+#bio #bio-content #photo img {
+  width: 100%;
+  border: 2px white solid;
+}
+#bio #bio-content #bio-text {
+  padding-left: 20px;
+  width: 90%;
+}
+#bio #bio-content #bio-text p {
+  font-size: min(4vmin, 60px);
+}
+
+#works {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#works #works-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+#works #works-content .project {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 1px #adadad solid;
+  transition: 0.2s all;
+  box-shadow: 0rem 0rem #666666, 0rem 0rem #adadad;
+}
+#works #works-content .project:hover {
+  box-shadow: 0.2rem 0.2rem #666666, 0.4rem 0.4rem #adadad;
+}
+#works #works-content .project a {
+  width: 13vw;
+  height: 2.5vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s all;
+  font-family: "Archivo BI";
+  font-size: min(1vw, 30px);
+  letter-spacing: 3px;
+  background-color: black;
+  color: white;
+}
+#works #works-content .project a img {
+  width: 3vmin;
+  transition: 0.2s all;
+  margin-left: 10px;
+}
+#works #works-content .project a:hover img {
+  transform: translateX(10px);
+}
+#works #works-content .proj-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 4vw;
+}
+#works #works-content .proj-title img {
+  width: 4vw;
+  height: 4vw;
+}
+#works #works-content .proj-title p {
+  font-weight: bold;
+  margin-left: 2vw;
+  font-size: 4vmin;
+}
+#works #works-content .proj-desc {
+  width: max(40vw, 500px);
+}
+#works #works-content .proj-desc p {
+  line-height: 1.5;
+  color: #666666;
+  font-family: "Archivo";
+  width: 100%;
+  font-size: 1.5vmin;
+}
+#works #works-content .proj-desc p span {
+  color: black;
+}
+
+#contact {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#contact #links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100px;
+}
+#contact #links a {
+  border: 2px white solid;
+  height: 2.5vw;
+  width: 10vw;
+  position: relative;
+  cursor: pointer;
+  border: 1px black solid;
+}
+#contact #links a div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  border: 1px black solid;
+  transition: 0.2s all;
+  transform: translate(-5px, -5px);
+}
+#contact #links a div:hover p {
+  color: gray;
+}
+#contact #links a div:active {
+  transform: translate(-1px, -1px);
+}
+#contact #links a div p {
+  color: white;
+  font-family: "Archivo BI";
+  font-size: min(1vw, 30px);
+  letter-spacing: 3px;
+}
+#contact #other-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 150px;
+  color: #666666;
+}
+#contact #other-links p {
+  margin: 0;
+  font-family: "Archivo BI";
+  font-size: min(0.85vw, 15px);
+  letter-spacing: 3px;
+}
+#contact #other-links a {
+  color: #666666;
+  margin: 0;
+  font-family: "Archivo BI";
+  font-size: min(0.85vw, 15px);
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+#proficiencies {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#proficiencies #profslist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#proficiencies #profslist .prof-cont {
+  margin: 30px;
+}
+#proficiencies #profslist div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+#proficiencies #profslist div img {
+  width: 40%;
+}
+#proficiencies #profslist div div {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  width: 40%;
+}
+#proficiencies #profslist div div p {
+  font-size: min(2vw, 40px);
+  width: 100%;
+}
+
+#navbar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 14vw;
+}
+#navbar a {
+  margin: 10px;
+  height: 4vh;
+  width: 15vh;
+  border: 1px black solid;
+}
+#navbar a div {
+  height: 100%;
+  width: 100%;
+  font-family: "Archivo BI";
+  font-size: min(1vw, 30px);
+  letter-spacing: 3px;
+  background: black;
+  border: 1px black solid;
+  transform: translate(-5px, -5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+#navbar a div:hover p {
+  color: gray;
+}
+#navbar a div:active {
+  transform: translate(-1px, -1px);
+}
+#navbar a div p {
+  color: white;
+  font-family: "Archivo BI";
+  font-size: min(1vw, 30px);
+  letter-spacing: 3px;
+}
+
+/*# sourceMappingURL=style.css.map */
