@@ -177,10 +177,34 @@ button:active {
   background-color: black;
   color: white;
 }
+@media screen and (max-width: 768px) {
+  #works #works-content .project a {
+    width: 40vw;
+    height: 8vw;
+    font-size: 1.5rem;
+  }
+}
+#works #works-content .project a .explore-text {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#works #works-content .project a .explore-img-cont {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #works #works-content .project a img {
   width: 3vmin;
   transition: 0.2s all;
   margin-left: 10px;
+}
+@media screen and (max-width: 768px) {
+  #works #works-content .project a img {
+    width: 8vw;
+  }
 }
 #works #works-content .project a:hover img {
   transform: translateX(10px);
@@ -189,10 +213,11 @@ button:active {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: left;
   margin: 0;
   padding: 0;
-  background-color: green;
+  height: 50%;
+  width: 80%;
 }
 #works #works-content .proj-title img {
   max-width: 100%;
@@ -214,6 +239,12 @@ button:active {
   width: 100%;
   font-size: 1.5vmin;
 }
+@media screen and (max-width: 768px) {
+  #works #works-content .proj-desc p {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+}
 #works #works-content .proj-desc p span {
   color: black;
 }
@@ -222,12 +253,19 @@ button:active {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+#contact .title {
+  font-size: 4vmax;
+}
 #contact #links {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  height: 100px;
+}
+@media screen and (max-width: 768px) {
+  #contact #links {
+    flex-direction: column;
+  }
 }
 #contact #links a {
   border: 2px white solid;
@@ -236,6 +274,13 @@ button:active {
   position: relative;
   cursor: pointer;
   border: 1px black solid;
+}
+@media screen and (max-width: 768px) {
+  #contact #links a {
+    width: 80%;
+    height: 70px;
+    margin: 10px;
+  }
 }
 #contact #links a div {
   display: flex;
@@ -260,6 +305,11 @@ button:active {
   font-size: min(1vw, 30px);
   letter-spacing: 3px;
 }
+@media screen and (max-width: 768px) {
+  #contact #links a div p {
+    font-size: 1.5rem;
+  }
+}
 #contact #other-links {
   display: flex;
   flex-direction: column;
@@ -274,6 +324,11 @@ button:active {
   font-size: min(0.85vw, 15px);
   letter-spacing: 3px;
 }
+@media screen and (max-width: 768px) {
+  #contact #other-links p {
+    font-size: 1rem;
+  }
+}
 #contact #other-links a {
   color: #666666;
   margin: 0;
@@ -281,6 +336,11 @@ button:active {
   font-size: min(0.85vw, 15px);
   letter-spacing: 3px;
   cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  #contact #other-links a {
+    font-size: 1rem;
+  }
 }
 
 #proficiencies {
@@ -353,7 +413,7 @@ button:active {
   align-items: flex-end;
   width: 14vw;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 875px) {
   #navbar {
     display: none;
   }
