@@ -179,7 +179,7 @@ button:active {
 }
 @media screen and (max-width: 768px) {
   #works #works-content .project a {
-    width: 40vw;
+    width: 80%;
     height: 8vw;
     font-size: 1.5rem;
   }
@@ -224,10 +224,20 @@ button:active {
   width: 8%;
   height: 8%;
 }
+@media screen and (max-width: 768px) {
+  #works #works-content .proj-title img {
+    width: 30%;
+  }
+}
 #works #works-content .proj-title p {
   font-weight: bold;
   margin-left: 2vw;
   font-size: 4vmin;
+}
+@media screen and (max-width: 768px) {
+  #works #works-content .proj-title p {
+    font-size: 200%;
+  }
 }
 #works #works-content .proj-desc {
   max-width: 80%;

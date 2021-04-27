@@ -210,14 +210,13 @@ button:active {
                 color: white;
 
                 @media screen and (max-width: 768px) {
-                    width: 40vw;
+                    width: 80%;
                     height: 8vw;
 
                     font-size: 1.5rem;
                 }
 
                 .explore-text {
-                    // background: yellowgreen;
                     height: 100%;
                     display: flex;
                     justify-content: center;
@@ -229,7 +228,6 @@ button:active {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    // background-color: yellowgreen;
                 }
 
                 img {
@@ -260,12 +258,14 @@ button:active {
             height: 50%;
             width: 80%;
 
-            // background-color: blue;
-
             img {
                 max-width: 100%;
                 width: 8%;
                 height: 8%;
+
+                @media screen and (max-width: 768px) {
+                    width: 30%;
+                }
             }
 
             p {
@@ -273,7 +273,9 @@ button:active {
                 margin-left: 2vw;
                 font-size: 4vmin;
 
-                // background-color: yellow;
+                @media screen and (max-width: 768px) {
+                    font-size: 200%;
+                }
             }
         }
 
