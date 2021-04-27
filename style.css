@@ -100,7 +100,7 @@ button:active {
   font-weight: bold;
   text-align: left;
   padding-left: 5%;
-  text-shadow: 0.07ex 0.07ex 0px #666666, 0.14ex 0.14ex #adadad;
+  text-shadow: 0.07ex 0.07ex #666666, 0.14ex 0.14ex #adadad;
 }
 #center #name {
   margin: 0;
