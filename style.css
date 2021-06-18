@@ -265,6 +265,7 @@ button:active {
 }
 #contact .title {
   font-size: 4vmax;
+  padding-bottom: 1rem;
 }
 #contact #links {
   display: flex;
